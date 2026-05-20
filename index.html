@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IncluiPlay | Tecnologia Assistiva JK</title>
+    <style>
+        :root {
+            --primary: #6366f1; --accent: #a855f7; --bg: #0f172a;
+            --card-bg: #1e293b; --text: #f8fafc; --success: #22c55e;
+            --gold: #fbbf24; --font-size: 16px;
+        }
+
+        /* Acessibilidade */
+        .high-contrast { --primary: #ffff00; --accent: #ffff00; --bg: #000; --card-bg: #000; --text: #ffff00; }
+        .daltonismo { filter: saturate(0.5) hue-rotate(15deg); }
+
+        body { 
+            font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); 
+            margin: 0; transition: 0.3s; font-size: var(--font-size); overflow-x: hidden;
+        }
+
+        .hidden { display: none !important; }
+
+        header {
+            padding: 15px 25px; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(30, 41, 59, 0.9); backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary); position: sticky; top: 0; z-index: 1000;
+        }
+
+        .container { padding: 30px 20px; max-width: 900px; margin: auto; }
+        .card { background: var(--card-bg); padding: 25px; border-radius: 20px; border: 2px solid var(--primary); margin-bottom: 20px; position: relative; }
+
+        button { width: 100%; padding: 15px; background: var(--primary); border: none; color: #000; border-radius: 12px; cursor: pointer; font-weight: bold; margin-top: 10px; font-size: 1rem; transition: 0.2s; }
+        button:hover { transform: scale(1.02); opacity: 0.9; }
+
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: 1px solid var(--primary); background: #0f172a; color: white; box-sizing: border-box; }
+
+        /* Avatar */
+        #avatar-display { width: 150px; height: 150px; background: var(--accent); border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center; font-size: 60px; border: 5px solid var(--gold); position: relative; overflow: hidden;}
+        #avatar-img { width: 100%; height: 100%; object-fit: cover; }
+        .item-equipado { position: absolute; font-size: 40px; }
+
+        /* Menu */
+        .dropdown { display: none; position: absolute; right: 10px; top: 55px; background: var(--card-bg); border: 2px solid var(--primary); border-radius: 12px; width: 240px; z-index: 1001; }
+        .dropdown div { padding: 15px; cursor: pointer; border-bottom: 1px solid #334155; }
+        .dropdown div:hover { background: var(--primary); color: #000; }
+
+        /* Jogos */
+        .grid-games { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+        .game-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid var(--primary); }
+
+        .task-item { background: rgba(255,255,255,0.1); padding: 12px; border-radius: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; }
+    </style>
+</head>
+<body id="app-body">
+
+    <header id="navbar" class="hidden">
+        <div style="font-weight: 900; letter-spacing: 1px;">INCLUIPLAY</div>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <div style="color: var(--gold); font-weight: bold;">💎 <span id="pts-nav">0</span></div>
+            <div onclick="toggleMenu()" style="cursor:pointer; font-size: 25px;">⋮
+                <div id="myDropdown" class="dropdown">
+                    <div onclick="showSection('home-section')">🏠 Início</div>
+                    <div onclick="showSection('games-section')">🎮 Laboratório de Jogos</div>
+                    <div onclick="showSection('avatar-section')">👤 Meu Personagem</div>
+                    <div onclick="showSection('routine-section')">📅 Minha Rotina</div>
+                    <div onclick="showSection('config-section')">⚙️ Acessibilidade</div>
+                    <div onclick="showSection('creators-section')">👥 Criadores</div>
+                    <div onclick="showSection('inclusion-section')">🧩 Inclusão</div>
+                    <div onclick="sair()" style="color: #f87171;">🚪 Sair e Avaliar</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- LOGIN -->
+        <section id="auth-section" class="card">
+            <h2 style="text-align: center;">Bem-vindo ao IncluiPlay</h2>
+            <p style="text-align: center;">Tecnologia Assistiva para todos.</p>
+            <input type="text" id="login-user" placeholder="Seu nome ou usuário">
+            <input type="password" id="login-pass" placeholder="Senha">
+            <button onclick="criarConta()">CRIAR CONTA</button>
+            <button onclick="fazerLogin()">ENTRAR NO PORTAL</button>
+        </section>
+
+        <!-- HOME -->
+        <section id="home-section" class="hidden">
+            <div class="card" style="text-align: center; border-style: dashed; background: linear-gradient(to bottom, #1e293b, #0f172a);">
+                <h1>Olá, <span id="user-display" style="color:var(--accent)"></span>!</h1>
+                <p>"Transformando barreiras em pontes digitais."</p>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="card" style="text-align: center;">
+                    <img src="https://blogdeolhonorn.com.br/wp-content/uploads/2026/03/feira-de-ciencias-mascote-224x300.jpeg" style="width: 100%; border-radius: 15px; margin-bottom: 10px;">
+                    <p><b>Guia de Exploração</b></p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <img src="https://blogdeolhonorn.com.br/wp-content/uploads/2026/03/dadadada-209x300.jpeg" style="width: 100%; border-radius: 15px; margin-bottom: 10px;">
+                    <p><b>Guia de Suporte</b></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- JOGOS -->
+        <section id="games-section" class="hidden">
+            <h2>🎮 Jogos de Estímulo</h2>
+            <div class="grid-games">
+                <div class="game-card"><span>🎯</span><h4>Eco-Click</h4><button onclick="abrirJogo('Eco-Click')">JOGAR</button></div>
+                <div class="game-card"><span>🧠</span><h4>Memória</h4><button onclick="abrirJogo('Memória')">JOGAR</button></div>
+                <div class="game-card"><span>👁️</span><h4>Foco</h4><button onclick="abrirJogo('Foco')">JOGAR</button></div>
+                <div class="game-card"><span>⌨️</span><h4>Teclado</h4><button onclick="abrirJogo('Teclado')">JOGAR</button></div>
+                <div class="game-card"><span>❓</span><h4>Quiz de Lógica</h4><button onclick="abrirAtividade('Quiz de Lógica')">JOGAR</button></div>
+                <div class="game-card"><span>🧩</span><h4>Quebra-cabeça</h4><button onclick="abrirAtividade('Quebra-cabeça')">JOGAR</button></div>
+                <div class="game-card"><span>👀</span><h4>Memória Visual</h4><button onclick="abrirAtividade('Memória Visual')">JOGAR</button></div>
+                <div class="game-card"><span>🔢</span><h4>Sequência de Números</h4><button onclick="abrirAtividade('Sequência de Números')">JOGAR</button></div>
+            </div>
+        </section>
+
+        <!-- AVATAR -->
+        <section id="avatar-section" class="hidden card" style="text-align: center;">
+            <h2>Meu Personagem</h2>
+            <div id="avatar-display">
+                <img id="avatar-img" src="https://blogdeolhonorn.com.br/wp-content/uploads/2026/03/feira-de-ciencias-mascote-224x300.jpeg">
+                <span id="slot-hat" class="item-equipado" style="top: -10px;"></span>
+                <span id="slot-glass" class="item-equipado" style="top: 35px;"></span>
+            </div>
+            <p>Pontos: <b style="color: var(--gold)" id="pts-loja">0</b></p>
+            <div style="display: grid; gap: 10px;">
+                <button onclick="comprar('hat', '🧢', 50)">🧢 Comprar Boné (50 pts)</button>
+                <button onclick="comprar('glass', '🕶️', 100)">🕶️ Comprar Óculos (100 pts)</button>
+                <button onclick="trocarAvatar()">Trocar Personagem</button>
+            </div>
+        </section>
+
+        <!-- ROTINA -->
+        <section id="routine-section" class="hidden card">
+            <h2>📅 Minha Rotina Diária</h2>
+            <div id="task-list">
+                <div class="task-item">💧 Beber água</div>
+                <div class="task-item">📖 Estudar Informática</div>
+            </div>
+            <input type="text" id="task-in" placeholder="Nova tarefa...">
+            <button onclick="novaTarefa()">Adicionar</button>
+        </section>
+
+        <!-- CONFIG -->
+        <section id="config-section" class="hidden card">
+            <h2>⚙️ Central de Acessibilidade</h2>
+            <button onclick="toggleContraste()">🌗 Alto Contraste</button>
+            <button onclick="toggleDaltonismo()">👓 Filtro Daltonismo</button>
+            <button onclick="mudarFonte(2)">➕ Aumentar Texto</button>
+            <button onclick="mudarFonte(-2)">➖ Diminuir Texto</button>
+            <button onclick="falar('O sistema de voz está pronto para te ajudar.')">🔊 Testar Leitura de Voz</button>
+        </section>
+
+        <!-- CRIADORES -->
+        <section id="creators-section" class="hidden card">
+            <h2>Escola Juscelino Kubitschek</h2>
+            <p><b>Curso:</b> 2º TEC Informática</p>
+            <hr>
+            <ul style="list-style: none; padding: 0; font-size: 1.2rem;">
+                <li>🚀 João Ricardo Martins</li>
+                <li>🚀 Jennefir Gracielly</li>
+                <li>🚀 Lucas Eduardo</li>
+            </ul>
+            <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.7;">© 2026 IncluiPlay - Direitos Reservados</p>
+        </section>
+
+        <!-- INCLUSÃO -->
+        <section id="inclusion-section" class="hidden card">
+            <h2>Inclusão Digital PCD</h2>
+            <p>🧩 Jogos e atividades desenvolvidos para inclusão e acessibilidade.</p>
+        </section>
+    </div>
+
+    <script>
+        // LOGIN
+        let user = { nome: "", pontos: 0, itens: [], fonte: 16 };
+        function criarConta(){
+            const nome = document.getElementById('login-user').value;
+            const pass = document.getElementById('login-pass').value;
+            if(!nome || !pass) return alert("Digite nome e senha!");
+            let db = JSON.parse(localStorage.getItem('incluiplay-users')||"{}");
+            if(db[nome]) return alert("Usuário já existe!");
+            db[nome] = {senha: pass, pontos:0, itens: [], avatar:"https://blogdeolhonorn.com.br/wp-content/uploads/2026/03/feira-de-ciencias-mascote-224x300.jpeg"};
+            localStorage.setItem('incluiplay-users', JSON.stringify(db));
+            alert("Conta criada com sucesso!");
+        }
+        function fazerLogin(){
+            const nome = document.getElementById('login-user').value;
+            const pass = document.getElementById('login-pass').value;
+            let db = JSON.parse(localStorage.getItem('incluiplay-users')||"{}");
+            if(!db[nome] || db[nome].senha!==pass) return alert("Usuário ou senha incorretos!");
+            user.nome = nome; user.pontos = db[nome].pontos; user.itens = db[nome].itens; user.avatar = db[nome].avatar;
+            document.getElementById('avatar-img').src = user.avatar;
+            document.getElementById('navbar').classList.remove('hidden');
+            document.getElementById('user-display').innerText = nome;
+            atualizarUI();
+            showSection('home-section');
+            falar("Seja bem-vindo ao Inclui Play, " + nome);
+        }
+        function salvarUser(){ 
+            let db = JSON.parse(localStorage.getItem('incluiplay-users')||"{}");
+            db[user.nome] = {senha: db[user.nome].senha, pontos:user.pontos, itens:user.itens, avatar:user.avatar};
+            localStorage.setItem('incluiplay-users', JSON.stringify(db));
+        }
+
+        // NAVEGAÇÃO
+        function showSection(id) {
+            document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            document.getElementById('myDropdown').style.display = 'none';
+        }
+        function toggleMenu() {
+            const m = document.getElementById('myDropdown');
+            m.style.display = m.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // PONTOS
+        function ganharPontos(p) {
+            user.pontos += p;
+            atualizarUI();
+            salvarUser();
+            falar("Você ganhou " + p + " pontos!");
+        }
+        function atualizarUI() {
+            document.getElementById('pts-nav').innerText = user.pontos;
+            document.getElementById('pts-loja').innerText = user.pontos;
+        }
+
+        // LOJA
+        function comprar(tipo, emoji, preco) {
+            if(user.pontos >= preco && !user.itens.includes(tipo)) {
+                user.pontos -= preco;
+                user.itens.push(tipo);
+                document.getElementById('slot-' + tipo).innerText = emoji;
+                atualizarUI();
+                salvarUser();
+                falar("Item comprado e equipado!");
+            } else {
+                alert("Pontos insuficientes ou você já tem este item!");
+            }
+        }
+        function trocarAvatar(){
+            const nova = prompt("Digite a URL da nova imagem do personagem:");
+            if(nova){ user.avatar = nova; document.getElementById('avatar-img').src = nova; salvarUser(); }
+        }
+
+        // TAREFAS
+        function novaTarefa() {
+            const txt = document.getElementById('task-in').value;
+            if(!txt) return;
+            document.getElementById('task-list').innerHTML += `<div class="task-item">${txt}</div>`;
+            document.getElementById('task-in').value = "";
+        }
+
+        // VOZ
+        function falar(msg) {
+            const s = new SpeechSynthesisUtterance(msg);
+            s.lang = 'pt-BR';
+            window.speechSynthesis.speak(s);
+        }
+
+        // FONTE / ACESSIBILIDADE
+        function mudarFonte(n) { user.fonte += n; document.documentElement.style.setProperty('--font-size', user.fonte + 'px'); }
+        function toggleContraste() { document.body.classList.toggle('high-contrast'); }
+        function toggleDaltonismo() { document.body.classList.toggle('daltonismo'); }
+
+        // SAIR
+        function sair() { 
+            const nota = prompt("Qual nota de 1 a 5 você dá para o nosso projeto?");
+            if(nota) alert("Obrigado pela nota " + nota);
+            location.reload();
+        }
+
+        // JOGOS funcionais
+        function abrirJogo(jogo){
+            if(jogo === 'Eco-Click'){
+                let clicks = 0;
+                alert("Clique o máximo de vezes que puder no botão!");
+                const btn = document.createElement('button');
+                btn.textContent = "Clique aqui!";
+                btn.style.fontSize = "2rem";
+                btn.onclick = ()=>{ clicks++; };
+                document.body.appendChild(btn);
+                setTimeout(()=>{
+                    document.body.removeChild(btn);
+                    const pontos = clicks * 2;
+                    ganharPontos(pontos);
+                    alert(`Você clicou ${clicks} vezes! Ganhou ${pontos} pontos.`);
+                }, 5000);
+            } else if(jogo === 'Memória'){
+                let pares = ['🍎','🍌','🍎','🍌'];
+                pares.sort(()=>Math.random()-0.5);
+                let aberto = [];
+                let acertos = 0;
+                while(acertos < 2){
+                    let escolha = prompt(`Escolha uma carta (0-3):\n${pares.map((_,i)=>i).join(' ')}`);
+                    if(!escolha) break;
+                    escolha = parseInt(escolha);
+                    if(aberto.includes(escolha)) continue;
+                    aberto.push(escolha);
+                    alert(`Carta ${escolha}: ${pares[escolha]}`);
+                    if(aberto.length===2){
+                        if(pares[aberto[0]]===pares[aberto[1]]){
+                            alert("Par correto!");
+                            acertos++;
+                            ganharPontos(10);
+                        } else {
+                            alert("Errado!");
+                        }
+                        aberto=[];
+                    }
+                }
+                alert("Fim do jogo Memória!");
+            } else if(jogo === 'Foco'){
+                const nums = [1,2,3,4,5];
+                let entrada = prompt(`Digite os números na ordem: ${nums.join(', ')}`);
+                if(entrada === nums.join(',')) ganharPontos(20);
+                else alert("Ordem incorreta!");
+            } else if(jogo === 'Teclado'){
+                const seq = "asdf";
+                let input = prompt(`Digite a sequência correta: ${seq}`);
+                if(input===seq) ganharPontos(25);
+                else alert("Sequência incorreta!");
+            }
+        }
+
+        function abrirAtividade(nome){
+            if(nome==='Quiz de Lógica'){
+                let resp = prompt("Qual número completa a sequência: 2,4,6,?");
+                if(resp==='8') ganharPontos(10);
+                else alert("Errado!");
+            } else if(nome==='Quebra-cabeça'){
+                alert("Resolva o quebra-cabeça visual (simulado)!");
+                ganharPontos(15);
+            } else if(nome==='Memória Visual'){
+                let cartas = ['🌟','💧','🌟','💧'];
+                cartas.sort(()=>Math.random()-0.5);
+                let escolha = prompt("Digite a posição de uma carta (0-3):");
+                escolha = parseInt(escolha);
+                alert(`Carta escolhida: ${cartas[escolha]}`);
+                ganharPontos(10);
+            } else if(nome==='Sequência de Números'){
+                let resp = prompt("Digite os números de 1 a 5 em ordem: 1,2,3,4,5");
+                if(resp==='1,2,3,4,5') ganharPontos(15);
+                else alert("Errado!");
+            }
+        }
+
+        // Inicial
+        document.addEventListener('DOMContentLoaded', ()=>{
+            document.documentElement.style.setProperty('--font-size', user.fonte + 'px');
+        });
+    </script>
+</body>
+</html>
