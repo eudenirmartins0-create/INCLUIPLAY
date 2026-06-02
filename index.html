@@ -100,6 +100,15 @@
         /* Estilo do Alarme Ativo */
         .alarm-active { animation: shake 0.5s infinite; background: linear-gradient(90deg, #ef4444, #b91c1c) !important; border-left: 5px solid #fff !important; }
         @keyframes shake { 0% { transform: translate(1px, 1px) rotate(0deg); } 10% { transform: translate(-1px, -2px) rotate(-1deg); } 20% { transform: translate(-3px, 0px) rotate(1deg); } 30% { transform: translate(0px, 2px) rotate(0deg); } 40% { transform: translate(1px, -1px) rotate(1deg); } 50% { transform: translate(-1px, 2px) rotate(-1deg); } 60% { transform: translate(-3px, 1px) rotate(0deg); } 70% { transform: translate(2px, 1px) rotate(-1deg); } 80% { transform: translate(-1px, -1px) rotate(1deg); } 90% { transform: translate(2px, 2px) rotate(0deg); } 100% { transform: translate(1px, -2px) rotate(-1deg); } }
+
+        /* ESTILOS DA ÁREA DE DESENHO */
+        .canvas-container { background: #ffffff; border-radius: 15px; overflow: hidden; border: 3px solid var(--accent); cursor: crosshair; display: block; margin: 15px auto; max-width: 100%; }
+        #paintCanvas { display: block; background: #ffffff; width: 100%; height: 400px; }
+        .paint-toolbar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; margin-top: 15px; }
+        .paint-toolbar label { font-weight: bold; font-size: 0.9rem; }
+        .color-picker-wrapper { display: flex; gap: 8px; }
+        .color-circle { width: 30px; height: 30px; border-radius: 50%; border: 2px solid white; cursor: pointer; transition: 0.1s; }
+        .color-circle:hover { transform: scale(1.15); }
     </style>
 </head>
 <body id="app-body">
@@ -112,6 +121,7 @@
                 <div id="myDropdown" class="dropdown">
                     <div onclick="showSection('home-section')">🏠 Início</div>
                     <div onclick="showSection('games-section')">🎮 Laboratório de Jogos</div>
+                    <div onclick="showSection('draw-section')">🎨 Desenhar</div>
                     <div onclick="showSection('avatar-section')">👤 Meu Personagem</div>
                     <div onclick="showSection('routine-section')">📅 Minha Rotina</div>
                     <div onclick="showSection('config-section')">⚙️ Acessibilidade</div>
@@ -132,7 +142,7 @@
             <div style="position:absolute;bottom:10px;right:10px;font-size:40px;opacity:.3;">🧩</div>
 
             <div style="text-align:center;position:relative;z-index:2;">
-                <img src="image_3bfaff.jpg" alt="Logo IncluiPlay" style="width:130px; height:130px; margin:auto; border-radius:30px; border:5px solid #fbbf24; box-shadow:0 0 25px rgba(255,255,255,.4); object-fit: cover; display: block;">
+                <img src="https://uploads.onecompiler.io/446vqw4j7/1780423886966/WhatsApp%20Image%202026-06-02%20at%2015.07.42.jpeg" alt="Logo IncluiPlay" style="width:130px; height:130px; margin:auto; border-radius:30px; border:5px solid #fbbf24; box-shadow:0 0 25px rgba(255,255,255,.4); object-fit: cover; display: block;">
                 <h1 style="margin-top:20px;color:white;font-size:2rem;text-shadow:2px 2px 5px rgba(0,0,0,.4);">Bem-vindo ao IncluiPlay!</h1>
                 <p style="color:#fef3c7;font-size:1.1rem;margin-bottom:25px;">Aprender, brincar e incluir juntos! 🎮✨</p>
             </div>
@@ -184,6 +194,36 @@
                 <div class="game-card quebra-cabeca"><span>🧩</span><h4>Quebra-cabeça</h4><button onclick="abrirAtividade('Quebra-cabeça')">JOGAR</button></div>
                 <div class="game-card memoria-visual"><span>👀</span><h4>Memória Visual</h4><button onclick="abrirAtividade('Memória Visual')">JOGAR</button></div>
                 <div class="game-card sequencia"><span>🔢</span><h4>Sequência de Números</h4><button onclick="abrirAtividade('Sequência de Números')">JOGAR</button></div>
+            </div>
+        </section>
+
+        <!-- DESENHAR -->
+        <section id="draw-section" class="hidden card">
+            <h2>🎨 Espaço de Criatividade e Desenho</h2>
+            <p style="font-size: 0.9rem; opacity: 0.8; margin-top:-10px;">Use o mouse ou o dedo na tela para soltar a imaginação!</p>
+            
+            <div class="canvas-container">
+                <canvas id="paintCanvas"></canvas>
+            </div>
+
+            <div class="paint-toolbar">
+                <div>
+                    <label>Cor do Pincel:</label>
+                    <div class="color-picker-wrapper" style="margin-top: 5px;">
+                        <div class="color-circle" style="background: #ef4444;" onclick="mudarCorDesenho('#ef4444')"></div>
+                        <div class="color-circle" style="background: #3b82f6;" onclick="mudarCorDesenho('#3b82f6')"></div>
+                        <div class="color-circle" style="background: #10b981;" onclick="mudarCorDesenho('#10b981')"></div>
+                        <div class="color-circle" style="background: #fbbf24;" onclick="mudarCorDesenho('#fbbf24')"></div>
+                        <div class="color-circle" style="background: #000000;" onclick="mudarCorDesenho('#000000')"></div>
+                    </div>
+                </div>
+
+                <div style="flex-grow: 1; min-width: 150px; padding: 0 10px;">
+                    <label>Espessura (<span id="brush-size-val">5</span>px):</label>
+                    <input type="range" id="brush-size" min="1" max="25" value="5" oninput="mudarTamanhoDesenho(this.value)" style="margin: 5px 0; width: 100%;">
+                </div>
+
+                <button onclick="limparDesenho()" style="width: auto; padding: 10px 20px; background: linear-gradient(135deg, #f43f5e, #be123c) !important; margin: 0;">🧹 Limpar Quadro</button>
             </div>
         </section>
 
@@ -263,6 +303,13 @@
         let alarmInterval = null;
         let alarmActive = false;
 
+        // Variáveis do Quadro de Desenho
+        const canvas = document.getElementById('paintCanvas');
+        const ctx = canvas.getContext('2d');
+        let desenhando = false;
+        let corAtual = '#000000';
+        let espessuraAtual = 5;
+
         // Pedir permissão de notificações assim que abrir o app
         if (typeof Notification !== "undefined" && Notification.permission !== "granted") {
             Notification.requestPermission();
@@ -298,6 +345,7 @@
             document.getElementById('user-display').innerText = nome;
             atualizarUI();
             renderizarRotina();
+            inicializarCanvas(); // Configura o tamanho inicial do canvas
             showSection('home-section');
             falar("Seja bem-vindo ao Inclui Play, " + nome);
             
@@ -317,6 +365,11 @@
             document.getElementById(id).classList.remove('hidden');
             document.getElementById('myDropdown').style.display = 'none';
             fecharPlayground();
+            
+            // Reajusta o tamanho do quadro se a aba de desenho for aberta
+            if(id === 'draw-section') {
+                ajustarTamanhoCanvas();
+            }
         }
         function toggleMenu() {
             const m = document.getElementById('myDropdown');
@@ -446,6 +499,62 @@
             clearInterval(alarmInterval);
             document.getElementById('btn-stop-alarm').classList.add('hidden');
             document.querySelectorAll('.task-item').forEach(el => el.classList.remove('alarm-active'));
+        }
+
+        // SISTEMA DO QUADRO DE DESENHO
+        function inicializarCanvas() {
+            // Eventos de Mouse
+            canvas.addEventListener('mousedown', iniciarTraco);
+            canvas.addEventListener('mousemove', desenharTraco);
+            canvas.addEventListener('mouseup', terminarTraco);
+            canvas.addEventListener('mouseleave', terminarTraco);
+
+            // Eventos de Toque (para Celular / Tablet)
+            canvas.addEventListener('touchstart', (e) => { e.preventDefault(); iniciarTraco(e.touches[0]); });
+            canvas.addEventListener('touchmove', (e) => { e.preventDefault(); desenharTraco(e.touches[0]); });
+            canvas.addEventListener('touchend', terminarTraco);
+        }
+
+        function ajustarTamanhoCanvas() {
+            // Define o tamanho real com base no espaço visível da tela
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = 400;
+            limparDesenho();
+        }
+
+        function iniciarTraco(e) {
+            desenhando = true;
+            ctx.beginPath();
+            const rect = canvas.getBoundingClientRect();
+            ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+        }
+
+        function desenharTraco(e) {
+            if (!desenhando) return;
+            const rect = canvas.getBoundingClientRect();
+            ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+            ctx.lineWidth = espessuraAtual;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = corAtual;
+            ctx.stroke();
+        }
+
+        function terminarTraco() {
+            desenhando = false;
+        }
+
+        function mudarCorDesenho(novaCor) {
+            corAtual = novaCor;
+        }
+
+        function mudarTamanhoDesenho(novoTamanho) {
+            espessuraAtual = novoTamanho;
+            document.getElementById('brush-size-val').innerText = novoTamanho;
+        }
+
+        function limparDesenho() {
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
 
         // VOZ
