@@ -51,7 +51,137 @@
         .game-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid var(--primary); }
 
         .task-item { background: rgba(255,255,255,0.1); padding: 12px; border-radius: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; }
-    </style>
+    
+/* DECORAÇÃO DIVERTIDA */
+body::before{
+content:"🧩 🎮 🌈 ⭐ 🧠";
+position:fixed;top:0;left:0;width:100%;
+font-size:28px;opacity:.08;letter-spacing:25px;
+pointer-events:none;z-index:0;
+}
+.container,.card,section{position:relative;z-index:1;}
+.card:not(#auth-section){
+background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(168,85,247,.15),rgba(236,72,153,.12));
+box-shadow:0 0 20px rgba(168,85,247,.25);
+}
+.card:not(#auth-section):hover{
+transform:translateY(-3px);
+transition:.3s;
+}
+
+/* DESIGN EXCLUSIVO PARA CADA CARD DE JOGO */
+.game-card.eco-click {
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    border: 2px solid #34d399;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+.game-card.memoria {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+    border: 2px solid #60a5fa;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}
+.game-card.foco {
+    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+    border: 2px solid #fbbf24;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+}
+.game-card.teclado {
+    background: linear-gradient(135deg, #6366f1, #4338ca) !important;
+    border: 2px solid #818cf8;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+}
+.game-card.quiz {
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9) !important;
+    border: 2px solid #a78bfa;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+}
+.game-card.quebra-cabeca {
+    background: linear-gradient(135deg, #ec4899, #be185d) !important;
+    border: 2px solid #f472b6;
+    box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
+}
+.game-card.memoria-visual {
+    background: linear-gradient(135deg, #14b8a6, #0f766e) !important;
+    border: 2px solid #2dd4bf;
+    box-shadow: 0 0 15px rgba(20, 184, 166, 0.4);
+}
+.game-card.sequencia {
+    background: linear-gradient(135deg, #f43f5e, #be123c) !important;
+    border: 2px solid #fb7185;
+    box-shadow: 0 0 15px rgba(244, 63, 94, 0.4);
+}
+
+.game-card span{font-size:40px;display:block;animation:pula 2s infinite;}
+@keyframes pula{50%{transform:translateY(-8px);}}
+h1,h2{
+text-shadow:0 0 10px rgba(168,85,247,.6);
+}
+#home-section .card{
+border:3px dashed #fbbf24;
+}
+#avatar-display{
+box-shadow:0 0 25px #fbbf24,0 0 40px #a855f7;
+}
+.task-item{
+border-left:5px solid #fbbf24;
+background:linear-gradient(90deg,rgba(251,191,36,.2),transparent);
+}
+button{
+background:linear-gradient(135deg,#fbbf24,#f472b6,#6366f1)!important;
+color:white!important;
+font-weight:900;
+box-shadow:0 0 12px rgba(255,255,255,.2);
+}
+header{
+background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
+}
+
+/* NOVO DESIGN DA TELA DE JOGO */
+.game-screen-container {
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    border: 4px dashed #fbbf24;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    animation: fadeIn 0.4s ease;
+}
+.game-screen-container h3 {
+    margin-color: white;
+    font-size: 1.8rem;
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
+    margin-top: 0;
+}
+.game-content-box {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 15px 0;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.game-options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+.btn-game-choice {
+    background: linear-gradient(135deg, #6366f1, #a855f7) !important;
+    margin: 0;
+}
+.btn-close-game {
+    background: linear-gradient(135deg, #ef4444, #991b1b) !important;
+    width: auto;
+    padding: 10px 25px;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+</style>
 </head>
 <body id="app-body">
 
@@ -76,14 +206,31 @@
 
     <div class="container">
         <!-- LOGIN -->
-        <section id="auth-section" class="card">
-            <h2 style="text-align: center;">Bem-vindo ao IncluiPlay</h2>
-            <p style="text-align: center;">Tecnologia Assistiva para todos.</p>
-            <input type="text" id="login-user" placeholder="Seu nome ou usuário">
-            <input type="password" id="login-pass" placeholder="Senha">
-            <button onclick="criarConta()">CRIAR CONTA</button>
-            <button onclick="fazerLogin()">ENTRAR NO PORTAL</button>
-        </section>
+        
+<section id="auth-section" class="card" style="background: linear-gradient(135deg,#4f46e5,#7c3aed,#ec4899);border: 4px dashed #fbbf24;overflow:hidden;position:relative;">
+    <div style="position:absolute;top:10px;left:10px;font-size:45px;opacity:.3;">🧩</div>
+    <div style="position:absolute;top:20px;right:20px;font-size:55px;opacity:.3;">🧩</div>
+    <div style="position:absolute;bottom:20px;left:30px;font-size:50px;opacity:.3;">🧩</div>
+    <div style="position:absolute;bottom:10px;right:10px;font-size:40px;opacity:.3;">🧩</div>
+
+    <div style="text-align:center;position:relative;z-index:2;">
+        <!-- SUA NOVA LOGO INTEGRADA AQUI -->
+        <img src="https://uploads.onecompiler.io/446vqw4j7/1780423886966/WhatsApp%20Image%202026-06-02%20at%2015.07.42.jpeg" alt="Logo IncluiPlay" style="width:130px; height:130px; margin:auto; border-radius:30px; border:5px solid #fbbf24; box-shadow:0 0 25px rgba(255,255,255,.4); object-fit: cover; display: block;">
+        <h1 style="margin-top:20px;color:white;font-size:2rem;text-shadow:2px 2px 5px rgba(0,0,0,.4);">Bem-vindo ao IncluiPlay!</h1>
+        <p style="color:#fef3c7;font-size:1.1rem;margin-bottom:25px;">Aprender, brincar e incluir juntos! 🎮✨</p>
+    </div>
+
+    <input type="text" id="login-user" placeholder="👤 Seu nome" style="background:white;color:#111827;border:3px solid #fbbf24;font-weight:bold;">
+    <input type="password" id="login-pass" placeholder="🔒 Sua senha" style="background:white;color:#111827;border:3px solid #fbbf24;font-weight:bold;">
+
+    <button onclick="criarConta()" style="background:#fbbf24;color:#111827;font-size:1.05rem;border:3px solid white;">🧩 CRIAR CONTA</button>
+    <button onclick="fazerLogin()" style="background:#22c55e;color:white;font-size:1.05rem;border:3px solid white;">🚀 ENTRAR</button>
+
+    <div style="text-align:center;margin-top:20px;color:white;font-weight:bold;">
+        🌈 Inclusão • Diversão • Aprendizagem 🌈
+    </div>
+</section>
+
 
         <!-- HOME -->
         <section id="home-section" class="hidden">
@@ -105,16 +252,23 @@
 
         <!-- JOGOS -->
         <section id="games-section" class="hidden">
+            <!-- ÁREA DE JOGO EXCLUSIVA INTEGRADA -->
+            <div id="game-playground" class="game-screen-container hidden">
+                <h3 id="game-title">🎮 Jogando: </h3>
+                <div id="game-content" class="game-content-box"></div>
+                <button class="btn-close-game" onclick="fecharPlayground()">Sair do Jogo</button>
+            </div>
+
             <h2>🎮 Jogos de Estímulo</h2>
             <div class="grid-games">
-                <div class="game-card"><span>🎯</span><h4>Eco-Click</h4><button onclick="abrirJogo('Eco-Click')">JOGAR</button></div>
-                <div class="game-card"><span>🧠</span><h4>Memória</h4><button onclick="abrirJogo('Memória')">JOGAR</button></div>
-                <div class="game-card"><span>👁️</span><h4>Foco</h4><button onclick="abrirJogo('Foco')">JOGAR</button></div>
-                <div class="game-card"><span>⌨️</span><h4>Teclado</h4><button onclick="abrirJogo('Teclado')">JOGAR</button></div>
-                <div class="game-card"><span>❓</span><h4>Quiz de Lógica</h4><button onclick="abrirAtividade('Quiz de Lógica')">JOGAR</button></div>
-                <div class="game-card"><span>🧩</span><h4>Quebra-cabeça</h4><button onclick="abrirAtividade('Quebra-cabeça')">JOGAR</button></div>
-                <div class="game-card"><span>👀</span><h4>Memória Visual</h4><button onclick="abrirAtividade('Memória Visual')">JOGAR</button></div>
-                <div class="game-card"><span>🔢</span><h4>Sequência de Números</h4><button onclick="abrirAtividade('Sequência de Números')">JOGAR</button></div>
+                <div class="game-card eco-click"><span>🎯</span><h4>Eco-Click</h4><button onclick="abrirJogo('Eco-Click')">JOGAR</button></div>
+                <div class="game-card memoria"><span>🧠</span><h4>Memória</h4><button onclick="abrirJogo('Memória')">JOGAR</button></div>
+                <div class="game-card foco"><span>👁️</span><h4>Foco</h4><button onclick="abrirJogo('Foco')">JOGAR</button></div>
+                <div class="game-card teclado"><span>⌨️</span><h4>Teclado</h4><button onclick="abrirJogo('Teclado')">JOGAR</button></div>
+                <div class="game-card quiz"><span>❓</span><h4>Quiz de Lógica</h4><button onclick="abrirAtividade('Quiz de Lógica')">JOGAR</button></div>
+                <div class="game-card quebra-cabeca"><span>🧩</span><h4>Quebra-cabeça</h4><button onclick="abrirAtividade('Quebra-cabeça')">JOGAR</button></div>
+                <div class="game-card memoria-visual"><span>👀</span><h4>Memória Visual</h4><button onclick="abrirAtividade('Memória Visual')">JOGAR</button></div>
+                <div class="game-card sequencia"><span>🔢</span><h4>Sequência de Números</h4><button onclick="abrirAtividade('Sequência de Números')">JOGAR</button></div>
             </div>
         </section>
 
@@ -212,6 +366,7 @@
             document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
             document.getElementById(id).classList.remove('hidden');
             document.getElementById('myDropdown').style.display = 'none';
+            fecharPlayground();
         }
         function toggleMenu() {
             const m = document.getElementById('myDropdown');
@@ -275,78 +430,186 @@
             location.reload();
         }
 
-        // JOGOS funcionais
+        // CONTROLADORES DA NOVA INTERFACE DE JOGOS
+        function iniciarPlayground(nome) {
+            document.getElementById('game-title').innerText = "🎮 Jogando: " + nome;
+            const container = document.getElementById('game-playground');
+            container.classList.remove('hidden');
+            window.scrollTo({ top: container.offsetTop - 20, behavior: 'smooth' });
+        }
+        function fecharPlayground() {
+            document.getElementById('game-playground').classList.add('hidden');
+            document.getElementById('game-content').innerHTML = "";
+        }
+
+        // RECONSTRUÇÃO DOS JOGOS DENTRO DO DESIGN
         function abrirJogo(jogo){
+            iniciarPlayground(jogo);
+            const caixa = document.getElementById('game-content');
+
             if(jogo === 'Eco-Click'){
                 let clicks = 0;
-                alert("Clique o máximo de vezes que puder no botão!");
-                const btn = document.createElement('button');
-                btn.textContent = "Clique aqui!";
-                btn.style.fontSize = "2rem";
-                btn.onclick = ()=>{ clicks++; };
-                document.body.appendChild(btn);
+                caixa.innerHTML = `
+                    <p style='font-size:1.2rem; font-weight:bold;'>Clique o máximo de vezes que puder antes do tempo acabar!⏱️</p>
+                    <h2 id='eco-counter' style='color:var(--gold); font-size:3rem;'>0</h2>
+                    <button id='btn-clicker' style='font-size:1.8rem; padding:20px; background:linear-gradient(135deg,#10b981,#059669)!important;'>CLIQUE AQUI!</button>
+                `;
+                const btn = document.getElementById('btn-clicker');
+                btn.onclick = () => { clicks++; document.getElementById('eco-counter').innerText = clicks; };
+                
                 setTimeout(()=>{
-                    document.body.removeChild(btn);
                     const pontos = clicks * 2;
                     ganharPontos(pontos);
-                    alert(`Você clicou ${clicks} vezes! Ganhou ${pontos} pontos.`);
+                    caixa.innerHTML = `<h3>Fim de jogo! 🎉</h3><p>Você clicou <b>${clicks}</b> vezes e faturou <b>${pontos}</b> pontos.</p>`;
                 }, 5000);
+
             } else if(jogo === 'Memória'){
                 let pares = ['🍎','🍌','🍎','🍌'];
                 pares.sort(()=>Math.random()-0.5);
                 let aberto = [];
                 let acertos = 0;
-                while(acertos < 2){
-                    let escolha = prompt(`Escolha uma carta (0-3):\n${pares.map((_,i)=>i).join(' ')}`);
-                    if(!escolha) break;
-                    escolha = parseInt(escolha);
-                    if(aberto.includes(escolha)) continue;
-                    aberto.push(escolha);
-                    alert(`Carta ${escolha}: ${pares[escolha]}`);
-                    if(aberto.length===2){
-                        if(pares[aberto[0]]===pares[aberto[1]]){
-                            alert("Par correto!");
-                            acertos++;
-                            ganharPontos(10);
-                        } else {
-                            alert("Errado!");
-                        }
-                        aberto=[];
+
+                function renderizarMemoria() {
+                    if(acertos === 2) {
+                        caixa.innerHTML = `<h3>Incrível! 🧠</h3><p>Você completou todos os pares!</p>`;
+                        return;
                     }
+                    caixa.innerHTML = `
+                        <p style='font-weight:bold; margin-bottom:15px;'>Encontre as frutas iguais:</p>
+                        <div class='game-options-grid'>
+                            ${pares.map((fruta, i) => {
+                                let revelada = aberto.includes(i) || fruta === 'OK';
+                                return `<button class='btn-game-choice' onclick='escolherCarta(${i})' style='font-size:2rem; min-height:80px;'>${revelada ? (fruta === 'OK' ? '✅' : fruta) : '❓'}</button>`;
+                            }).join('')}
+                        </div>
+                    `;
                 }
-                alert("Fim do jogo Memória!");
+
+                window.escolherCarta = (i) => {
+                    if(aberto.includes(i) || pares[i] === 'OK' || aberto.length >= 2) return;
+                    aberto.push(i);
+                    renderizarMemoria();
+
+                    if(aberto.length === 2){
+                        setTimeout(() => {
+                            if(pares[aberto[0]] === pares[aberto[1]]){
+                                acertos++;
+                                ganharPontos(10);
+                                pares[aberto[0]] = 'OK';
+                                pares[aberto[1]] = 'OK';
+                            }
+                            aberto = [];
+                            renderizarMemoria();
+                        }, 1000);
+                    }
+                };
+                renderizarMemoria();
+
             } else if(jogo === 'Foco'){
                 const nums = [1,2,3,4,5];
-                let entrada = prompt(`Digite os números na ordem: ${nums.join(', ')}`);
-                if(entrada === nums.join(',')) ganharPontos(20);
-                else alert("Ordem incorreta!");
+                caixa.innerHTML = `
+                    <p style='font-size:1.1rem;'>Guarde os números na cabeça: <b style='color:var(--gold); font-size:1.5rem;'>${nums.join(', ')}</b></p>
+                    <input type='text' id='foco-input' placeholder='Digite-os ordenados separados por vírgula...' style='background:white; color:black;'>
+                    <button onclick='validarFoco()'>Enviar Resposta</button>
+                `;
+                window.validarFoco = () => {
+                    let entrada = document.getElementById('foco-input').value;
+                    if(entrada === nums.join(',')) {
+                        ganharPontos(20);
+                        caixa.innerHTML = `<h3>Excelente! 👁️</h3><p>Sua atenção e foco estão impecáveis.</p>`;
+                    } else {
+                        caixa.innerHTML = `<h3>Ops! Estava incorreto.</h3><button onclick="abrirJogo('Foco')">Tentar Novamente</button>`;
+                    }
+                };
+
             } else if(jogo === 'Teclado'){
                 const seq = "asdf";
-                let input = prompt(`Digite a sequência correta: ${seq}`);
-                if(input===seq) ganharPontos(25);
-                else alert("Sequência incorreta!");
+                caixa.innerHTML = `
+                    <p style='font-size:1.1rem;'>Digite a seguinte sequência usando o teclado: <b style='color:var(--gold); font-size:1.5rem;'>${seq}</b></p>
+                    <input type='text' id='teclado-input' placeholder='Digite aqui...' style='background:white; color:black;'>
+                    <button onclick='validarTeclado()'>Confirmar</button>
+                `;
+                window.validarTeclado = () => {
+                    let input = document.getElementById('teclado-input').value;
+                    if(input === seq) {
+                        ganharPontos(25);
+                        caixa.innerHTML = `<h3>Perfeito! ⌨️</h3><p>Sequência correta de digitação!</p>`;
+                    } else {
+                        caixa.innerHTML = `<h3>Incorreto!</h3><button onclick="abrirJogo('Teclado')">Tentar Novamente</button>`;
+                    }
+                };
             }
         }
 
         function abrirAtividade(nome){
+            iniciarPlayground(nome);
+            const caixa = document.getElementById('game-content');
+
             if(nome==='Quiz de Lógica'){
-                let resp = prompt("Qual número completa a sequência: 2,4,6,?");
-                if(resp==='8') ganharPontos(10);
-                else alert("Errado!");
+                caixa.innerHTML = `
+                    <p style='font-size:1.2rem; font-weight:bold;'>Qual número completa a lógica da sequência: 2, 4, 6, ... ?</p>
+                    <div class='game-options-grid'>
+                        <button class='btn-game-choice' onclick='responderQuiz(7)'>7</button>
+                        <button class='btn-game-choice' onclick='responderQuiz(8)'>8</button>
+                        <button class='btn-game-choice' onclick='responderQuiz(9)'>9</button>
+                        <button class='btn-game-choice' onclick='responderQuiz(10)'>10</button>
+                    </div>
+                `;
+                window.responderQuiz = (escolha) => {
+                    if(escolha === 8) {
+                        ganharPontos(10);
+                        caixa.innerHTML = `<h3>Resposta Certa! ❓</h3><p>Você é muito bom com padrões lógicos!</p>`;
+                    } else {
+                        caixa.innerHTML = `<h3>Errou!</h3><button onclick="abrirAtividade('Quiz de Lógica')">Tentar de Novo</button>`;
+                    }
+                };
+
             } else if(nome==='Quebra-cabeça'){
-                alert("Resolva o quebra-cabeça visual (simulado)!");
-                ganharPontos(15);
+                caixa.innerHTML = `
+                    <p>Monte as peças corretas arrastando os pensamentos logicamente!</p>
+                    <div style='font-size:4rem; margin:15px;'>🧩 ⚡ ⚙️</div>
+                    <button onclick='resolverQuebraCabeca()'>Montar Peças</button>
+                `;
+                window.resolverQuebraCabeca = () => {
+                    ganharPontos(15);
+                    caixa.innerHTML = `<h3>Quebra-Cabeça Resolvido! 🎉</h3><p>Excelente coordenação e montagem estrutural!</p>`;
+                };
+
             } else if(nome==='Memória Visual'){
                 let cartas = ['🌟','💧','🌟','💧'];
                 cartas.sort(()=>Math.random()-0.5);
-                let escolha = prompt("Digite a posição de uma carta (0-3):");
-                escolha = parseInt(escolha);
-                alert(`Carta escolhida: ${cartas[escolha]}`);
-                ganharPontos(10);
+                caixa.innerHTML = `
+                    <p style='font-weight:bold;'>Escolha uma posição para revelar o símbolo secreto escondido:</p>
+                    <div class='game-options-grid'>
+                        <button class='btn-game-choice' onclick='revelarVisual(0)'>Posição 0</button>
+                        <button class='btn-game-choice' onclick='revelarVisual(1)'>Posição 1</button>
+                        <button class='btn-game-choice' onclick='revelarVisual(2)'>Posição 2</button>
+                        <button class='btn-game-choice' onclick='revelarVisual(3)'>Posição 3</button>
+                    </div>
+                `;
+                window.revelarVisual = (escolha) => {
+                    ganharPontos(10);
+                    caixa.innerHTML = `
+                        <h3>Símbolo encontrado: ${cartas[escolha]}</h3>
+                        <p>Ótima escolha espacial! Você ganhou 10 pontos de abordagem.</p>
+                    `;
+                };
+
             } else if(nome==='Sequência de Números'){
-                let resp = prompt("Digite os números de 1 a 5 em ordem: 1,2,3,4,5");
-                if(resp==='1,2,3,4,5') ganharPontos(15);
-                else alert("Errado!");
+                caixa.innerHTML = `
+                    <p style='font-size:1.1rem;'>Digite a sequência numérica de 1 até 5 separados por vírgula:</p>
+                    <input type='text' id='seq-input' placeholder='Exemplo: 1,2...' style='background:white; color:black;'>
+                    <button onclick='validarSequencia()'>Verificar Ordem</button>
+                `;
+                window.validarSequencia = () => {
+                    let resp = document.getElementById('seq-input').value;
+                    if(resp === '1,2,3,4,5') {
+                        ganharPontos(15);
+                        caixa.innerHTML = `<h3>Ordem Perfeita! 🔢</h3><p>Sua organização sequencial está correta.</p>`;
+                    } else {
+                        caixa.innerHTML = `<h3>Incorreto!</h3><button onclick="abrirAtividade('Sequência de Números')">Tentar Novamente</button>`;
+                    }
+                };
             }
         }
 
