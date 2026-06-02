@@ -50,138 +50,57 @@
         .grid-games { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
         .game-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid var(--primary); }
 
-        .task-item { background: rgba(255,255,255,0.1); padding: 12px; border-radius: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; }
+        .task-item { background: rgba(255,255,255,0.1); padding: 12px; border-radius: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
     
-/* DECORAÇÃO DIVERTIDA */
-body::before{
-content:"🧩 🎮 🌈 ⭐ 🧠";
-position:fixed;top:0;left:0;width:100%;
-font-size:28px;opacity:.08;letter-spacing:25px;
-pointer-events:none;z-index:0;
-}
-.container,.card,section{position:relative;z-index:1;}
-.card:not(#auth-section){
-background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(168,85,247,.15),rgba(236,72,153,.12));
-box-shadow:0 0 20px rgba(168,85,247,.25);
-}
-.card:not(#auth-section):hover{
-transform:translateY(-3px);
-transition:.3s;
-}
+        /* DECORAÇÃO DIVERTIDA */
+        body::before{
+        content:"🧩 🎮 🌈 ⭐ 🧠";
+        position:fixed;top:0;left:0;width:100%;
+        font-size:28px;opacity:.08;letter-spacing:25px;
+        pointer-events:none;z-index:0;
+        }
+        .container,.card,section{position:relative;z-index:1;}
+        .card:not(#auth-section){
+        background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(168,85,247,.15),rgba(236,72,153,.12));
+        box-shadow:0 0 20px rgba(168,85,247,.25);
+        }
+        .card:not(#auth-section):hover{
+        transform:translateY(-3px);
+        transition:.3s;
+        }
 
-/* DESIGN EXCLUSIVO PARA CADA CARD DE JOGO */
-.game-card.eco-click {
-    background: linear-gradient(135deg, #10b981, #059669) !important;
-    border: 2px solid #34d399;
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
-}
-.game-card.memoria {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
-    border: 2px solid #60a5fa;
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
-}
-.game-card.foco {
-    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
-    border: 2px solid #fbbf24;
-    box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
-}
-.game-card.teclado {
-    background: linear-gradient(135deg, #6366f1, #4338ca) !important;
-    border: 2px solid #818cf8;
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
-}
-.game-card.quiz {
-    background: linear-gradient(135deg, #8b5cf6, #6d28d9) !important;
-    border: 2px solid #a78bfa;
-    box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
-}
-.game-card.quebra-cabeca {
-    background: linear-gradient(135deg, #ec4899, #be185d) !important;
-    border: 2px solid #f472b6;
-    box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
-}
-.game-card.memoria-visual {
-    background: linear-gradient(135deg, #14b8a6, #0f766e) !important;
-    border: 2px solid #2dd4bf;
-    box-shadow: 0 0 15px rgba(20, 184, 166, 0.4);
-}
-.game-card.sequencia {
-    background: linear-gradient(135deg, #f43f5e, #be123c) !important;
-    border: 2px solid #fb7185;
-    box-shadow: 0 0 15px rgba(244, 63, 94, 0.4);
-}
+        /* DESIGN EXCLUSIVO PARA CADA CARD DE JOGO */
+        .game-card.eco-click { background: linear-gradient(135deg, #10b981, #059669) !important; border: 2px solid #34d399; box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
+        .game-card.memoria { background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important; border: 2px solid #60a5fa; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
+        .game-card.foco { background: linear-gradient(135deg, #f59e0b, #d97706) !important; border: 2px solid #fbbf24; box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
+        .game-card.teclado { background: linear-gradient(135deg, #6366f1, #4338ca) !important; border: 2px solid #818cf8; box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
+        .game-card.quiz { background: linear-gradient(135deg, #8b5cf6, #6d28d9) !important; border: 2px solid #a78bfa; box-shadow: 0 0 15px rgba(139, 92, 246, 0.4); }
+        .game-card.quebra-cabeca { background: linear-gradient(135deg, #ec4899, #be185d) !important; border: 2px solid #f472b6; box-shadow: 0 0 15px rgba(236, 72, 153, 0.4); }
+        .game-card.memoria-visual { background: linear-gradient(135deg, #14b8a6, #0f766e) !important; border: 2px solid #2dd4bf; box-shadow: 0 0 15px rgba(20, 184, 166, 0.4); }
+        .game-card.sequencia { background: linear-gradient(135deg, #f43f5e, #be123c) !important; border: 2px solid #fb7185; box-shadow: 0 0 15px rgba(244, 63, 94, 0.4); }
 
-.game-card span{font-size:40px;display:block;animation:pula 2s infinite;}
-@keyframes pula{50%{transform:translateY(-8px);}}
-h1,h2{
-text-shadow:0 0 10px rgba(168,85,247,.6);
-}
-#home-section .card{
-border:3px dashed #fbbf24;
-}
-#avatar-display{
-box-shadow:0 0 25px #fbbf24,0 0 40px #a855f7;
-}
-.task-item{
-border-left:5px solid #fbbf24;
-background:linear-gradient(90deg,rgba(251,191,36,.2),transparent);
-}
-button{
-background:linear-gradient(135deg,#fbbf24,#f472b6,#6366f1)!important;
-color:white!important;
-font-weight:900;
-box-shadow:0 0 12px rgba(255,255,255,.2);
-}
-header{
-background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
-}
+        .game-card span{font-size:40px;display:block;animation:pula 2s infinite;}
+        @keyframes pula{50%{transform:translateY(-8px);}}
+        h1,h2{ text-shadow:0 0 10px rgba(168,85,247,.6); }
+        #home-section .card{ border:3px dashed #fbbf24; }
+        #avatar-display{ box-shadow:0 0 25px #fbbf24,0 0 40px #a855f7; }
+        .task-item{ border-left:5px solid #fbbf24; background:linear-gradient(90deg,rgba(251,191,36,.2),transparent); }
+        button{ background:linear-gradient(135deg,#fbbf24,#f472b6,#6366f1)!important; color:white!important; font-weight:900; box-shadow:0 0 12px rgba(255,255,255,.2); }
+        header{ background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important; }
 
-/* NOVO DESIGN DA TELA DE JOGO */
-.game-screen-container {
-    background: linear-gradient(145deg, #1e293b, #0f172a);
-    border: 4px dashed #fbbf24;
-    border-radius: 20px;
-    padding: 25px;
-    margin-bottom: 25px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    animation: fadeIn 0.4s ease;
-}
-.game-screen-container h3 {
-    margin-color: white;
-    font-size: 1.8rem;
-    text-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
-    margin-top: 0;
-}
-.game-content-box {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 20px;
-    margin: 15px 0;
-    min-height: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.game-options-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    width: 100%;
-}
-.btn-game-choice {
-    background: linear-gradient(135deg, #6366f1, #a855f7) !important;
-    margin: 0;
-}
-.btn-close-game {
-    background: linear-gradient(135deg, #ef4444, #991b1b) !important;
-    width: auto;
-    padding: 10px 25px;
-}
-@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        /* NOVO DESIGN DA TELA DE JOGO */
+        .game-screen-container { background: linear-gradient(145deg, #1e293b, #0f172a); border: 4px dashed #fbbf24; border-radius: 20px; padding: 25px; margin-bottom: 25px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: fadeIn 0.4s ease; }
+        .game-screen-container h3 { color: white; font-size: 1.8rem; text-shadow: 0 0 8px rgba(251, 191, 36, 0.6); margin-top: 0; }
+        .game-content-box { background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 20px; margin: 15px 0; min-height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .game-options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; }
+        .btn-game-choice { background: linear-gradient(135deg, #6366f1, #a855f7) !important; margin: 0; }
+        .btn-close-game { background: linear-gradient(135deg, #ef4444, #991b1b) !important; width: auto; padding: 10px 25px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-</style>
+        /* Estilo do Alarme Ativo */
+        .alarm-active { animation: shake 0.5s infinite; background: linear-gradient(90deg, #ef4444, #b91c1c) !important; border-left: 5px solid #fff !important; }
+        @keyframes shake { 0% { transform: translate(1px, 1px) rotate(0deg); } 10% { transform: translate(-1px, -2px) rotate(-1deg); } 20% { transform: translate(-3px, 0px) rotate(1deg); } 30% { transform: translate(0px, 2px) rotate(0deg); } 40% { transform: translate(1px, -1px) rotate(1deg); } 50% { transform: translate(-1px, 2px) rotate(-1deg); } 60% { transform: translate(-3px, 1px) rotate(0deg); } 70% { transform: translate(2px, 1px) rotate(-1deg); } 80% { transform: translate(-1px, -1px) rotate(1deg); } 90% { transform: translate(2px, 2px) rotate(0deg); } 100% { transform: translate(1px, -2px) rotate(-1deg); } }
+    </style>
 </head>
 <body id="app-body">
 
@@ -206,31 +125,28 @@ background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
 
     <div class="container">
         <!-- LOGIN -->
-        
-<section id="auth-section" class="card" style="background: linear-gradient(135deg,#4f46e5,#7c3aed,#ec4899);border: 4px dashed #fbbf24;overflow:hidden;position:relative;">
-    <div style="position:absolute;top:10px;left:10px;font-size:45px;opacity:.3;">🧩</div>
-    <div style="position:absolute;top:20px;right:20px;font-size:55px;opacity:.3;">🧩</div>
-    <div style="position:absolute;bottom:20px;left:30px;font-size:50px;opacity:.3;">🧩</div>
-    <div style="position:absolute;bottom:10px;right:10px;font-size:40px;opacity:.3;">🧩</div>
+        <section id="auth-section" class="card" style="background: linear-gradient(135deg,#4f46e5,#7c3aed,#ec4899);border: 4px dashed #fbbf24;overflow:hidden;position:relative;">
+            <div style="position:absolute;top:10px;left:10px;font-size:45px;opacity:.3;">🧩</div>
+            <div style="position:absolute;top:20px;right:20px;font-size:55px;opacity:.3;">🧩</div>
+            <div style="position:absolute;bottom:20px;left:30px;font-size:50px;opacity:.3;">🧩</div>
+            <div style="position:absolute;bottom:10px;right:10px;font-size:40px;opacity:.3;">🧩</div>
 
-    <div style="text-align:center;position:relative;z-index:2;">
-        <!-- SUA NOVA LOGO INTEGRADA AQUI -->
-        <img src="https://uploads.onecompiler.io/446vqw4j7/1780423886966/WhatsApp%20Image%202026-06-02%20at%2015.07.42.jpeg" alt="Logo IncluiPlay" style="width:130px; height:130px; margin:auto; border-radius:30px; border:5px solid #fbbf24; box-shadow:0 0 25px rgba(255,255,255,.4); object-fit: cover; display: block;">
-        <h1 style="margin-top:20px;color:white;font-size:2rem;text-shadow:2px 2px 5px rgba(0,0,0,.4);">Bem-vindo ao IncluiPlay!</h1>
-        <p style="color:#fef3c7;font-size:1.1rem;margin-bottom:25px;">Aprender, brincar e incluir juntos! 🎮✨</p>
-    </div>
+            <div style="text-align:center;position:relative;z-index:2;">
+                <img src="image_3bfaff.jpg" alt="Logo IncluiPlay" style="width:130px; height:130px; margin:auto; border-radius:30px; border:5px solid #fbbf24; box-shadow:0 0 25px rgba(255,255,255,.4); object-fit: cover; display: block;">
+                <h1 style="margin-top:20px;color:white;font-size:2rem;text-shadow:2px 2px 5px rgba(0,0,0,.4);">Bem-vindo ao IncluiPlay!</h1>
+                <p style="color:#fef3c7;font-size:1.1rem;margin-bottom:25px;">Aprender, brincar e incluir juntos! 🎮✨</p>
+            </div>
 
-    <input type="text" id="login-user" placeholder="👤 Seu nome" style="background:white;color:#111827;border:3px solid #fbbf24;font-weight:bold;">
-    <input type="password" id="login-pass" placeholder="🔒 Sua senha" style="background:white;color:#111827;border:3px solid #fbbf24;font-weight:bold;">
+            <input type="text" id="login-user" placeholder="👤 Seu nome" style="background:white;color:#111827;border:3px solid #fbbf24;font-weight:bold;">
+            <input type="password" id="login-pass" placeholder="🔒 Sua senha" style="background:white;color:#111827;border:3px solid #fbbf24;font-weight:bold;">
 
-    <button onclick="criarConta()" style="background:#fbbf24;color:#111827;font-size:1.05rem;border:3px solid white;">🧩 CRIAR CONTA</button>
-    <button onclick="fazerLogin()" style="background:#22c55e;color:white;font-size:1.05rem;border:3px solid white;">🚀 ENTRAR</button>
+            <button onclick="criarConta()" style="background:#fbbf24;color:#111827;font-size:1.05rem;border:3px solid white;">🧩 CRIAR CONTA</button>
+            <button onclick="fazerLogin()" style="background:#22c55e;color:white;font-size:1.05rem;border:3px solid white;">🚀 ENTRAR</button>
 
-    <div style="text-align:center;margin-top:20px;color:white;font-weight:bold;">
-        🌈 Inclusão • Diversão • Aprendizagem 🌈
-    </div>
-</section>
-
+            <div style="text-align:center;margin-top:20px;color:white;font-weight:bold;">
+                🌈 Inclusão • Diversão • Aprendizagem 🌈
+            </div>
+        </section>
 
         <!-- HOME -->
         <section id="home-section" class="hidden">
@@ -252,7 +168,6 @@ background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
 
         <!-- JOGOS -->
         <section id="games-section" class="hidden">
-            <!-- ÁREA DE JOGO EXCLUSIVA INTEGRADA -->
             <div id="game-playground" class="game-screen-container hidden">
                 <h3 id="game-title">🎮 Jogando: </h3>
                 <div id="game-content" class="game-content-box"></div>
@@ -291,12 +206,24 @@ background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
         <!-- ROTINA -->
         <section id="routine-section" class="hidden card">
             <h2>📅 Minha Rotina Diária</h2>
+            <p style="font-size: 0.9rem; opacity: 0.8; margin-top:-10px;">Ative as notificações para o despertador funcionar mesmo em segundo plano!</p>
+            
             <div id="task-list">
-                <div class="task-item">💧 Beber água</div>
-                <div class="task-item">📖 Estudar Informática</div>
+                <!-- Inserido dinamicamente via JS -->
             </div>
-            <input type="text" id="task-in" placeholder="Nova tarefa...">
-            <button onclick="novaTarefa()">Adicionar</button>
+            
+            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; margin-top: 15px;">
+                <label style="font-weight: bold; display: block; margin-bottom: 5px;">Nome da Atividade:</label>
+                <input type="text" id="task-in" placeholder="Ex: Beber água, Tomar Remédio...">
+                
+                <label style="font-weight: bold; display: block; margin-top: 10px; margin-bottom: 5px;">Horário do Alarme:</label>
+                <input type="time" id="task-time" style="background: white; color: black; font-weight: bold;">
+                
+                <button onclick="novaTarefa()">⏰ Adicionar na Rotina</button>
+            </div>
+            
+            <!-- Botão para desligar o despertador ativo -->
+            <button id="btn-stop-alarm" class="hidden" onclick="pararDespertador()" style="background: linear-gradient(135deg, #ef4444, #dc2626) !important; margin-top: 15px; font-size: 1.2rem;">🛑 DESLIGAR DESPERTADOR</button>
         </section>
 
         <!-- CONFIG -->
@@ -331,33 +258,56 @@ background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
 
     <script>
         // LOGIN
-        let user = { nome: "", pontos: 0, itens: [], fonte: 16 };
+        let user = { nome: "", pontos: 0, itens: [], fonte: 16, rotina: [] };
+        let audioContext = null;
+        let alarmInterval = null;
+        let alarmActive = false;
+
+        // Pedir permissão de notificações assim que abrir o app
+        if (typeof Notification !== "undefined" && Notification.permission !== "granted") {
+            Notification.requestPermission();
+        }
+
         function criarConta(){
             const nome = document.getElementById('login-user').value;
             const pass = document.getElementById('login-pass').value;
             if(!nome || !pass) return alert("Digite nome e senha!");
             let db = JSON.parse(localStorage.getItem('incluiplay-users')||"{}");
             if(db[nome]) return alert("Usuário já existe!");
-            db[nome] = {senha: pass, pontos:0, itens: [], avatar:"https://blogdeolhonorn.com.br/wp-content/uploads/2026/03/feira-de-ciencias-mascote-224x300.jpeg"};
+            db[nome] = {senha: pass, pontos:0, itens: [], avatar:"https://blogdeolhonorn.com.br/wp-content/uploads/2026/03/feira-de-ciencias-mascote-224x300.jpeg", rotina: []};
             localStorage.setItem('incluiplay-users', JSON.stringify(db));
             alert("Conta criada com sucesso!");
         }
+        
         function fazerLogin(){
             const nome = document.getElementById('login-user').value;
             const pass = document.getElementById('login-pass').value;
             let db = JSON.parse(localStorage.getItem('incluiplay-users')||"{}");
             if(!db[nome] || db[nome].senha!==pass) return alert("Usuário ou senha incorretos!");
-            user.nome = nome; user.pontos = db[nome].pontos; user.itens = db[nome].itens; user.avatar = db[nome].avatar;
+            user.nome = nome; 
+            user.pontos = db[nome].pontos; 
+            user.itens = db[nome].itens; 
+            user.avatar = db[nome].avatar;
+            user.rotina = db[nome].rotina || [
+                { texto: "💧 Beber água", hora: "08:00", tocado: false },
+                { texto: "📖 Estudar Informática", hora: "14:00", tocado: false }
+            ];
+            
             document.getElementById('avatar-img').src = user.avatar;
             document.getElementById('navbar').classList.remove('hidden');
             document.getElementById('user-display').innerText = nome;
             atualizarUI();
+            renderizarRotina();
             showSection('home-section');
             falar("Seja bem-vindo ao Inclui Play, " + nome);
+            
+            // Inicia a checagem do relógio do despertador
+            setInterval(checarRelogio, 1000);
         }
+        
         function salvarUser(){ 
             let db = JSON.parse(localStorage.getItem('incluiplay-users')||"{}");
-            db[user.nome] = {senha: db[user.nome].senha, pontos:user.pontos, itens:user.itens, avatar:user.avatar};
+            db[user.nome] = {senha: db[user.nome].senha, pontos:user.pontos, itens:user.itens, avatar:user.avatar, rotina: user.rotina};
             localStorage.setItem('incluiplay-users', JSON.stringify(db));
         }
 
@@ -374,7 +324,7 @@ background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
         }
 
         // PONTOS
-        function ganharPontos(p) {
+        function ganarPontos(p) {
             user.pontos += p;
             atualizarUI();
             salvarUser();
@@ -403,19 +353,108 @@ background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
             if(nova){ user.avatar = nova; document.getElementById('avatar-img').src = nova; salvarUser(); }
         }
 
-        // TAREFAS
+        // ROTINA E DESPERTADOR
+        function renderizarRotina() {
+            const lista = document.getElementById('task-list');
+            lista.innerHTML = "";
+            user.rotina.forEach((item, index) => {
+                lista.innerHTML += `
+                    <div class="task-item" id="task-${index}">
+                        <span><b>[${item.hora}]</b> ${item.texto}</span>
+                        <button onclick="removerTarefa(${index})" style="width:auto; margin:0; padding:5px 10px; background:#ef4444!important;">❌</button>
+                    </div>`;
+            });
+        }
+
         function novaTarefa() {
             const txt = document.getElementById('task-in').value;
-            if(!txt) return;
-            document.getElementById('task-list').innerHTML += `<div class="task-item">${txt}</div>`;
+            const hora = document.getElementById('task-time').value;
+            if(!txt || !hora) return alert("Coloque a atividade e escolha o horário!");
+            
+            user.rotina.push({ texto: txt, hora: hora, tocado: false });
             document.getElementById('task-in').value = "";
+            document.getElementById('task-time').value = "";
+            renderizarRotina();
+            salvarUser();
+        }
+
+        function removerTarefa(index) {
+            user.rotina.splice(index, 1);
+            renderizarRotina();
+            salvarUser();
+        }
+
+        // Sistema de monitoramento do tempo
+        function checarRelogio() {
+            const agora = new Date();
+            const h = String(agora.getHours()).padStart(2, '0');
+            const m = String(agora.getMinutes()).padStart(2, '0');
+            const horaAtual = `${h}:${m}`;
+
+            user.rotina.forEach((item, index) => {
+                if (item.hora === horaAtual && !item.tocado) {
+                    item.tocado = true; // Impede disparar repetidamente no mesmo minuto
+                    dispararAlarme(item.texto, index);
+                }
+                // Reseta o status "tocado" se o minuto já passou
+                if (item.hora !== horaAtual && item.tocado) {
+                    item.tocado = false;
+                }
+            });
+        }
+
+        // Toca o som do despertador e vibra visualmente a interface
+        function dispararAlarme(texto, index) {
+            if(alarmActive) return;
+            alarmActive = true;
+
+            // Mostra o botão para parar o alarme e foca na aba de rotina
+            document.getElementById('btn-stop-alarm').classList.remove('hidden');
+            const itemVisual = document.getElementById(`task-${index}`);
+            if(itemVisual) itemVisual.classList.add('alarm-active');
+
+            // Envia notificação nativa para cobrir caso o usuário esteja em outra aba
+            if (typeof Notification !== "undefined" && Notification.permission === "granted") {
+                new Notification("⏰ Hora da sua Atividade!", {
+                    body: `Está na hora de: ${texto}`,
+                    icon: 'image_3bfaff.jpg'
+                });
+            }
+
+            // Avisa por voz e inicia o apito contínuo
+            falar(`Atenção, está na hora de: ${texto}`);
+            
+            // Criando oscilador de áudio nativo para apitar como despertador real
+            if(!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            
+            alarmInterval = setInterval(() => {
+                if(!alarmActive) return;
+                let osc = audioContext.createOscillator();
+                let gain = audioContext.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(880, audioContext.currentTime); // Tom agudo de alarme
+                gain.gain.setValueAtTime(0.5, audioContext.currentTime);
+                osc.connect(gain);
+                gain.connect(audioContext.destination);
+                osc.start();
+                osc.stop(audioContext.currentTime + 0.15); // Apito curto
+            }, 300);
+        }
+
+        function pararDespertador() {
+            alarmActive = false;
+            clearInterval(alarmInterval);
+            document.getElementById('btn-stop-alarm').classList.add('hidden');
+            document.querySelectorAll('.task-item').forEach(el => el.classList.remove('alarm-active'));
         }
 
         // VOZ
         function falar(msg) {
-            const s = new SpeechSynthesisUtterance(msg);
-            s.lang = 'pt-BR';
-            window.speechSynthesis.speak(s);
+            if (typeof SpeechSynthesisUtterance !== "undefined") {
+                const s = new SpeechSynthesisUtterance(msg);
+                s.lang = 'pt-BR';
+                window.speechSynthesis.speak(s);
+            }
         }
 
         // FONTE / ACESSIBILIDADE
@@ -459,7 +498,7 @@ background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
                 
                 setTimeout(()=>{
                     const pontos = clicks * 2;
-                    ganharPontos(pontos);
+                    ganarPontos(pontos);
                     caixa.innerHTML = `<h3>Fim de jogo! 🎉</h3><p>Você clicou <b>${clicks}</b> vezes e faturou <b>${pontos}</b> pontos.</p>`;
                 }, 5000);
 
@@ -494,7 +533,7 @@ background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
                         setTimeout(() => {
                             if(pares[aberto[0]] === pares[aberto[1]]){
                                 acertos++;
-                                ganharPontos(10);
+                                ganarPontos(10);
                                 pares[aberto[0]] = 'OK';
                                 pares[aberto[1]] = 'OK';
                             }
@@ -515,7 +554,7 @@ background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
                 window.validarFoco = () => {
                     let entrada = document.getElementById('foco-input').value;
                     if(entrada === nums.join(',')) {
-                        ganharPontos(20);
+                        ganarPontos(20);
                         caixa.innerHTML = `<h3>Excelente! 👁️</h3><p>Sua atenção e foco estão impecáveis.</p>`;
                     } else {
                         caixa.innerHTML = `<h3>Ops! Estava incorreto.</h3><button onclick="abrirJogo('Foco')">Tentar Novamente</button>`;
@@ -532,7 +571,7 @@ background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
                 window.validarTeclado = () => {
                     let input = document.getElementById('teclado-input').value;
                     if(input === seq) {
-                        ganharPontos(25);
+                        ganarPontos(25);
                         caixa.innerHTML = `<h3>Perfeito! ⌨️</h3><p>Sequência correta de digitação!</p>`;
                     } else {
                         caixa.innerHTML = `<h3>Incorreto!</h3><button onclick="abrirJogo('Teclado')">Tentar Novamente</button>`;
@@ -557,7 +596,7 @@ background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
                 `;
                 window.responderQuiz = (escolha) => {
                     if(escolha === 8) {
-                        ganharPontos(10);
+                        ganarPontos(10);
                         caixa.innerHTML = `<h3>Resposta Certa! ❓</h3><p>Você é muito bom com padrões lógicos!</p>`;
                     } else {
                         caixa.innerHTML = `<h3>Errou!</h3><button onclick="abrirAtividade('Quiz de Lógica')">Tentar de Novo</button>`;
@@ -571,7 +610,7 @@ background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
                     <button onclick='resolverQuebraCabeca()'>Montar Peças</button>
                 `;
                 window.resolverQuebraCabeca = () => {
-                    ganharPontos(15);
+                    ganarPontos(15);
                     caixa.innerHTML = `<h3>Quebra-Cabeça Resolvido! 🎉</h3><p>Excelente coordenação e montagem estrutural!</p>`;
                 };
 
@@ -588,7 +627,7 @@ background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
                     </div>
                 `;
                 window.revelarVisual = (escolha) => {
-                    ganharPontos(10);
+                    ganarPontos(10);
                     caixa.innerHTML = `
                         <h3>Símbolo encontrado: ${cartas[escolha]}</h3>
                         <p>Ótima escolha espacial! Você ganhou 10 pontos de abordagem.</p>
@@ -604,7 +643,7 @@ background:linear-gradient(90deg,#4338ca,#7c3aed,#ec4899)!important;
                 window.validarSequencia = () => {
                     let resp = document.getElementById('seq-input').value;
                     if(resp === '1,2,3,4,5') {
-                        ganharPontos(15);
+                        ganarPontos(15);
                         caixa.innerHTML = `<h3>Ordem Perfeita! 🔢</h3><p>Sua organização sequencial está correta.</p>`;
                     } else {
                         caixa.innerHTML = `<h3>Incorreto!</h3><button onclick="abrirAtividade('Sequência de Números')">Tentar Novamente</button>`;
