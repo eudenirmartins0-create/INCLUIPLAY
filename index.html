@@ -14,6 +14,8 @@
         /* Acessibilidade */
         .high-contrast { --primary: #ffff00; --accent: #ffff00; --bg: #000; --card-bg: #000; --text: #ffff00; }
         .daltonismo { filter: saturate(0.5) hue-rotate(15deg); }
+        .daltonismo-protan { filter: url(#protanopia); }
+        .daltonismo-deuteran { filter: url(#deuteranopia); }
 
         body { 
             font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); 
@@ -57,17 +59,24 @@
         button:hover { transform: scale(1.03); filter: brightness(1.1); box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4); }
         button:active { transform: scale(0.98); }
 
-        input { 
+        input, select { 
             width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: 1px solid var(--primary); 
             background: #0f172a; color: white; box-sizing: border-box;
             transition: all 0.3s ease;
         }
-        input:focus { border-color: var(--accent); box-shadow: 0 0 10px rgba(168, 85, 247, 0.5); outline: none; }
+        input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 10px rgba(168, 85, 247, 0.5); outline: none; }
 
         /* Avatar */
         #avatar-display { width: 150px; height: 150px; background: var(--accent); border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center; font-size: 60px; border: 5px solid var(--gold); position: relative; overflow: hidden; transition: all 0.3s ease;}
         #avatar-img { width: 100%; height: 100%; object-fit: cover; }
         .item-equipado { position: absolute; font-size: 40px; }
+        
+        /* Enfeites de Perfil da Loja */
+        .perfil-enfeite-cristal { box-shadow: 0 0 30px #a855f7, inset 0 0 20px #6366f1 !important; animation: pulseAura 2s infinite alternate; }
+        .perfil-enfeite-rtx { border-color: #22c55e !important; box-shadow: 0 0 35px #22c55e, 0 0 15px #fbbf24 !important; }
+        .perfil-enfeite-lendario { background: linear-gradient(45deg, #fbbf24, #ec4899) !important; animation: rotateGlow 4s linear infinite; }
+        
+        @keyframes pulseAura { 0% { filter: drop-shadow(0 0 5px #a855f7); } 100% { filter: drop-shadow(0 0 25px #6366f1); } }
 
         /* Menu Dropdown Fluido */
         .dropdown { 
@@ -110,7 +119,7 @@
         box-shadow:0 8px 25px rgba(168,85,247,0.4);
         }
 
-        /* DESIGN EXCLUSIVO PARA CADA CARD DE JOGO */
+        /* DESIGN EXCLUSIVO PARA CADA CARD DE JOGO E NOVA ABA */
         .game-card.eco-click { background: linear-gradient(135deg, #10b981, #059669) !important; border: 2px solid #34d399; box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
         .game-card.memoria { background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important; border: 2px solid #60a5fa; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
         .game-card.foco { background: linear-gradient(135deg, #f59e0b, #d97706) !important; border: 2px solid #fbbf24; box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
@@ -120,6 +129,27 @@
         .game-card.memoria-visual { background: linear-gradient(135deg, #14b8a6, #0f766e) !important; border: 2px solid #2dd4bf; box-shadow: 0 0 15px rgba(20, 184, 166, 0.4); }
         .game-card.sequencia { background: linear-gradient(135deg, #f43f5e, #be123c) !important; border: 2px solid #fb7185; box-shadow: 0 0 15px rgba(244, 63, 94, 0.4); }
         .game-card.ditado { background: linear-gradient(135deg, #ff007f, #7928ca) !important; border: 2px solid #ff79c6; box-shadow: 0 0 15px rgba(255, 0, 127, 0.5); }
+        .game-card.block-blast { background: linear-gradient(135deg, #0284c7, #0369a1) !important; border: 2px solid #38bdf8; box-shadow: 0 0 15px rgba(2, 132, 199, 0.4); }
+        
+        /* Design Exclusivo da Aba de Exercícios */
+        .btn-exercicio-portugues { background: linear-gradient(135deg, #a855f7, #ec4899) !important; color: white !important; font-size: 1.2rem; }
+        .btn-exercicio-matematica { background: linear-gradient(135deg, #3b82f6, #06b6d4) !important; color: white !important; font-size: 1.2rem; }
+        .fase-btn { width: auto; display: inline-block; padding: 10px 20px; margin: 5px; background: #334155; border: 2px solid var(--primary); color: white !important; border-radius: 10px; }
+        .fase-btn.active { background: var(--gold) !important; color: #000 !important; }
+        
+        /* Layout split para o exercício de português */
+        .split-exercicio { display: flex; gap: 20px; align-items: stretch; margin-top: 15px; }
+        .split-box-texto { flex: 1; background: rgba(0, 0, 0, 0.3); padding: 20px; border-radius: 15px; border-left: 5px solid var(--accent); max-height: 300px; overflow-y: auto; }
+        .split-box-perguntas { flex: 1; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 15px; border: 2px dashed var(--primary); display: flex; flex-direction: column; justify-content: center; }
+
+        /* Estilo para as Cartas de Matemática */
+        .cartas-container { display: flex; justify-content: center; gap: 15px; margin: 15px 0; font-size: 4rem; }
+        .carta-mat { background: white; padding: 10px 20px; border-radius: 10px; box-shadow: 0 5px 10px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; border: 2px solid #cbd5e1; transform: rotate(-3deg); }
+        .carta-mat:nth-child(even) { transform: rotate(4deg); }
+
+        /* Modal Guia de Boas-Vindas */
+        .guia-modal-backdrop { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; z-index: 3000; }
+        .guia-modal-box { background: linear-gradient(145deg, #1e293b, #0f172a); border: 4px dashed #fbbf24; border-radius: 24px; padding: 35px; width: 90%; max-width: 500px; text-align: center; box-shadow: 0 20px 50px rgba(251, 191, 36, 0.3); }
 
         .game-card span{font-size:40px;display:block;animation:pula 2s infinite;}
         @keyframes pula{50%{transform:translateY(-8px);}}
@@ -184,9 +214,51 @@
         .puzzle-piece { width: 100px; height: 100px; background-image: url('https://images.unsplash.com/vector-1752546478738-824df708f76a?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y3NzfGVufDB8fDB8fHww'); background-size: 310px 310px; border-radius: 8px; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2); }
         .puzzle-piece:hover { transform: scale(0.97); box-shadow: 0 0 10px var(--accent); }
         .puzzle-piece.empty { background: #1e293b !important; border: 2px dashed rgba(255,255,255,0.1); cursor: default; box-shadow: none; }
+
+        /* NOVOS ESTILOS - SELEÇÃO DE DIAS DA SEMANA */
+        .week-grid { display: flex; justify-content: space-between; gap: 5px; margin: 10px 0; }
+        .day-btn { flex: 1; padding: 10px 2px; font-size: 0.85rem; border: 2px solid var(--primary); background: #1e293b; color: white!important; border-radius: 8px; text-align: center; cursor: pointer; font-weight: bold; transition: all 0.2s; }
+        .day-btn.active { background: linear-gradient(135deg, #fbbf24, #f472b6)!important; color: #000!important; border-color: #fff; }
+
+        /* NOVO ESTILO TABULEIRO MEMÓRIA 6X6 */
+        .memoria-6x6-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; width: 100%; max-width: 550px; margin: auto; }
+
+        /* TABULEIRO BLOCK BLAST */
+        .block-blast-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; width: 320px; height: 320px; background: #1e293b; border: 3px solid #0284c7; padding: 6px; border-radius: 12px; margin: 15px auto; }
+        .bb-cell { background: #0f172a; border-radius: 4px; transition: background 0.2s; cursor: pointer; }
+        .bb-cell.filled { background: #38bdf8; box-shadow: inset 0 0 8px rgba(255,255,255,0.6); }
+        .bb-pieces-container { display: flex; justify-content: center; gap: 15px; margin-top: 15px; width: 100%; }
+        .bb-piece-preview { display: grid; gap: 2px; padding: 8px; background: rgba(255,255,255,0.05); border: 2px dashed #38bdf8; border-radius: 10px; cursor: pointer; transition: transform 0.2s; }
+        .bb-piece-preview:hover { transform: scale(1.08); background: rgba(255,255,255,0.1); }
+        .bb-preview-cell { width: 18px; height: 18px; border-radius: 3px; }
+        .bb-preview-cell.active { background: #38bdf8; }
     </style>
 </head>
 <body id="app-body">
+
+    <!-- Filtros SVG para Daltonismo Otimizado -->
+    <svg style="display:none">
+        <filter id="protanopia">
+            <feColorMatrix type="matrix" values="0.567,0.433,0,0,0 0.558,0.442,0,0,0 0,0.242,0.758,0,0 0,0,0,1,0"/>
+        </filter>
+        <filter id="deuteranopia">
+            <feColorMatrix type="matrix" values="0.625,0.375,0,0,0 0.7,0.3,0,0,0 0,0.3,0.7,0,0 0,0,0,1,0"/>
+        </filter>
+    </svg>
+
+    <!-- GUIA DE BOAS-VINDAS / INTRODUÇÃO (Apresenta o Site ao Entrar) -->
+    <div id="guia-modal" class="guia-modal-backdrop hidden">
+        <div class="guia-modal-box">
+            <h2 style="color:var(--gold)">🌈 Bem-vindo à sua Jornada!</h2>
+            <p>Este é o <b>IncluiPlay</b>. Vamos te mostrar tudo o que temos preparado para você aprender se divertindo!</p>
+            <div style="display: flex; gap: 10px; margin: 20px 0; justify-content: center;">
+                <img src="https://blogdeolhonorn.com.br/wp-content/uploads/2026/03/feira-de-ciencias-mascote-224x300.jpeg" style="width: 120px; border-radius: 15px; border: 2px solid var(--primary);">
+                <img src="https://blogdeolhonorn.com.br/wp-content/uploads/2026/03/dadadada-209x300.jpeg" style="width: 120px; border-radius: 15px; border: 2px solid var(--accent);">
+            </div>
+            <p style="font-size:0.95rem; opacity:0.9;">Explore nosso Laboratório de Jogos, Espaço de Criatividade, a novíssima Central de Exercícios de Fixação e muito mais!</p>
+            <button onclick="fecharGuiaIntro()" style="font-size:1.1rem; padding:12px;">Vamos Começar! 🚀</button>
+        </div>
+    </div>
 
     <!-- MODAL CUSTOMIZADA (DITADO ANIMADO) -->
     <div id="error-modal" class="custom-modal-backdrop hidden">
@@ -207,6 +279,7 @@
             <div onclick="toggleMenu()" style="cursor:pointer; font-size: 25px; padding: 5px 10px;">⋮
                 <div id="myDropdown" class="dropdown">
                     <div onclick="navegarParaAba('home-section')">🏠 Início</div>
+                    <div onclick="navegarParaAba('exercicios-section')">✏️ Exercícios</div>
                     <div onclick="navegarParaAba('games-section')">🎮 Laboratório de Jogos</div>
                     <div onclick="navegarParaAba('draw-section')">🎨 Desenhar</div>
                     <div onclick="navegarParaAba('avatar-section')">👤 Meu Personagem</div>
@@ -263,6 +336,28 @@
             </div>
         </section>
 
+        <!-- NOVA ABA: EXERCÍCIOS (PORTUGUÊS / MATEMÁTICA) -->
+        <section id="exercicios-section" class="hidden card">
+            <h2>✏️ Central de Exercícios Adaptados</h2>
+            <p>Escolha uma matéria para treinar e acumular recompensas especiais!</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
+                <button class="btn-exercicio-portugues" onclick="selecionarMateriaExercicio('portugues')">📚 Português (Textos)</button>
+                <button class="btn-exercicio-matematica" onclick="selecionarMateriaExercicio('matematica')">🎴 Matemática (Cartas)</button>
+            </div>
+
+            <!-- Área de Fases Dinâmicas -->
+            <div id="exercicios-fases-box" class="hidden" style="text-align:center; margin-bottom:20px; background:rgba(0,0,0,0.2); padding:10px; border-radius:12px;">
+                <span style="font-weight:bold; display:block; margin-bottom:5px;">Escolha a Fase:</span>
+                <div id="exercicios-fases-lista"></div>
+            </div>
+
+            <!-- Playground de Atividades de Exercício -->
+            <div id="exercicios-playground" class="hidden" style="background: rgba(255, 255, 255, 0.02); padding: 15px; border-radius: 15px; border: 2px solid var(--primary);">
+                <div id="exercicio-conteudo-dinamico"></div>
+            </div>
+        </section>
+
         <!-- JOGOS -->
         <section id="games-section" class="hidden">
             <div id="game-playground" class="game-screen-container hidden">
@@ -275,7 +370,8 @@
             <div class="grid-games">
                 <div class="game-card ditado"><span>🖼️</span><h4>Ditado Animado</h4><button onclick="abrirJogo('Ditado Animado')">JOGAR</button></div>
                 <div class="game-card eco-click"><span>🎯</span><h4>Eco-Click</h4><button onclick="abrirJogo('Eco-Click')">JOGAR</button></div>
-                <div class="game-card memoria"><span>🧠</span><h4>Memória</h4><button onclick="abrirJogo('Memória')">JOGAR</button></div>
+                <div class="game-card memoria"><span>🧠</span><h4>Memória 6x6</h4><button onclick="abrirJogo('Memória')">JOGAR</button></div>
+                <div class="game-card block-blast"><span>🧱</span><h4>Block Blast</h4><button onclick="abrirJogo('Block Blast')">JOGAR</button></div>
                 <div class="game-card foco"><span>👁️</span><h4>Foco</h4><button onclick="abrirJogo('Foco')">JOGAR</button></div>
                 <div class="game-card teclado"><span>⌨️</span><h4>Teclado</h4><button onclick="abrirJogo('Teclado')">JOGAR</button></div>
                 <div class="game-card quiz"><span>❓</span><h4>Quiz de Lógica</h4><button onclick="abrirAtividade('Quiz de Lógica')">JOGAR</button></div>
@@ -347,10 +443,23 @@
                 <span id="slot-glass" class="item-equipado" style="top: 35px;"></span>
             </div>
             <p>Pontos: <b style="color: var(--gold)" id="pts-loja">0</b></p>
-            <div style="display: grid; gap: 10px;">
-                <button onclick="comprar('hat', '👑', 50)">👑 Comprar Coroa (50 pts)</button>
-                <button onclick="comprar('glass', '🕶️', 100)">🕶️ Comprar Óculos (100 pts)</button>
-                <button onclick="trocarAvatar()">Trocar Personagem</button>
+            
+            <div style="display: grid; gap: 10px; margin-bottom: 20px;">
+                <!-- NOVO REQUISITO: ESCOLHER FOTO DIRETO DA GALERIA -->
+                <button onclick="document.getElementById('file-avatar-input').click()" style="background: linear-gradient(135deg, #10b981, #059669) !important;">🖼️ Escolher Foto da Galeria</button>
+                <input type="file" id="file-avatar-input" accept="image/*" class="hidden" onchange="carregarFotoGaleria(this)">
+                <button onclick="trocarAvatar()">Trocar por URL</button>
+            </div>
+
+            <!-- NOVO REQUISITO: SISTEMA DE COMPRAS PARA INFEITAR PERFIL -->
+            <h3>🛒 Loja de Enfeites de Perfil</h3>
+            <div style="display: grid; gap: 10px; background: rgba(0,0,0,0.15); padding: 15px; border-radius:15px;">
+                <button onclick="comprarCosmetico('cristal', 40)">✨ Aura de Cristais Incandescentes (40 pts)</button>
+                <button onclick="comprarCosmetico('rtx', 75)">🟢 Brilho RTX Neon de Performance (75 pts)</button>
+                <button onclick="comprarCosmetico('lendario', 120)">👑 Fundo Lendário Cromático (120 pts)</button>
+                <hr style="border-color: rgba(255,255,255,0.1)">
+                <button onclick="comprar('hat', '👑', 50)">👑 Comprar Coroa Clássica (50 pts)</button>
+                <button onclick="comprar('glass', '🕶️', 100)">🕶️ Comprar Óculos Escuros (100 pts)</button>
             </div>
         </section>
 
@@ -368,6 +477,17 @@
                 <label style="font-weight: bold; display: block; margin-top: 10px; margin-bottom: 5px;">Horário do Alarme:</label>
                 <input type="time" id="task-time" style="background: white; color: black; font-weight: bold;">
                 
+                <label style="font-weight: bold; display: block; margin-top: 10px; margin-bottom: 5px;">Selecione os dias da semana:</label>
+                <div class="week-grid">
+                    <div class="day-btn" data-day="0" onclick="toggleDiaRotina(this)">Dom</div>
+                    <div class="day-btn" data-day="1" onclick="toggleDiaRotina(this)">Seg</div>
+                    <div class="day-btn" data-day="2" onclick="toggleDiaRotina(this)">Ter</div>
+                    <div class="day-btn" data-day="3" onclick="toggleDiaRotina(this)">Qua</div>
+                    <div class="day-btn" data-day="4" onclick="toggleDiaRotina(this)">Qui</div>
+                    <div class="day-btn" data-day="5" onclick="toggleDiaRotina(this)">Sex</div>
+                    <div class="day-btn" data-day="6" onclick="toggleDiaRotina(this)">Sáb</div>
+                </div>
+                
                 <button onclick="novaTarefa()">⏰ Adicionar na Rotina</button>
             </div>
             
@@ -378,7 +498,16 @@
         <section id="config-section" class="hidden card">
             <h2>⚙️ Central de Acessibilidade</h2>
             <button onclick="toggleContraste()">🌗 Alto Contraste</button>
-            <button onclick="toggleDaltonismo()">👓 Filtro Daltonismo</button>
+            <button onclick="toggleDaltonismo()">👓 Filtro Daltonismo Básico</button>
+            
+            <!-- NOVO REQUISITO: MAIS ITENS DE ACESSIBILIDADE ÚTEIS -->
+            <select id="select-daltonismo" onchange="mudarFiltroDaltonismoEspecífico(this.value)">
+                <option value="nenhum">Filtro Daltonismo Avançado: Desativado</option>
+                <option value="protan">Protanopia (Esverdeamento/Vermelho)</option>
+                <option value="deuteran">Deuteranopia (Dificuldade Verde)</option>
+            </select>
+            <button onclick="ativarFocoLeituraBlocos()">📖 Ativar Foco de Leitura Imersiva</button>
+            
             <button onclick="mudarFonte(2)">➕ Aumentar Texto</button>
             <button onclick="mudarFonte(-2)">➖ Diminuir Texto</button>
             <button onclick="falar('O sistema de voz está pronto para te ajudar.')">🔊 Testar Leitura de Voz</button>
@@ -405,7 +534,7 @@
     </div>
 
     <script>
-        let user = { nome: "", pontos: 0, itens: [], fonte: 16, rotina: [] };
+        let user = { nome: "", pontos: 0, itens: [], cosmeticos: [], avatar:"https://blogdeolhonorn.com.br/wp-content/uploads/2026/03/feira-de-ciencias-mascote-224x300.jpeg", fonte: 16, rotina: [] };
         let audioContext = null;
         let alarmInterval = null;
         let alarmActive = false;
@@ -416,6 +545,43 @@
         let desenhando = false;
         let corAtual = '#000000';
         let espessuraAtual = 5;
+
+        // Controle Global de Fases dos Jogos (Evitar Enjoar)
+        let gameLevels = { foco: 1, teclado: 1, quiz: 1, visual: 1, sequencia: 1 };
+        let materiaSelecionadaExercicio = "";
+        let faseAtualExercicio = 1;
+
+        // Dias da Semana Selecionados na UI da rotina (Array de booleans)
+        let diasSelecionados = [false, false, false, false, false, false, false];
+
+        // Banco de Dados Dinâmico de Exercícios (Fases Otimizadas)
+        const dbExercicios = {
+            portugues: [
+                {
+                    texto: "O robô de lata adora ajudar as crianças. Ele tem olhos brilhantes que parecem duas grandes lanternas à noite.",
+                    pergunta: "O que os olhos do robô parecem à noite?",
+                    opcoes: ["Duas estrelas", "Duas lanternas", "Dois faróis de carro", "Duas velas"],
+                    resposta: 1
+                },
+                {
+                    texto: "A borboleta azul pousou na flor amarela do jardim. Ela bateu as asas bem devagar para descansar sob o calor do sol.",
+                    pergunta: "Em qual flor a borboleta pousou?",
+                    opcoes: ["Na flor vermelha", "Na flor amarela", "Na flor roxa", "No galho seco"],
+                    resposta: 1
+                },
+                {
+                    texto: "O pequeno barco navegava seguro pelo oceano limpo. Os marinheiros avistaram golfinhos saltando contentes.",
+                    pergunta: "O que os marinheiros avistaram pulando?",
+                    opcoes: ["Baleias gigantes", "Tubarões", "Golfinhos saltando", "Pássaros brancos"],
+                    resposta: 2
+                }
+            ],
+            matematica: [
+                { c1: "🃏", c2: "🃏", pergunta: "Quanto é uma carta mais outra carta?", resposta: 2 },
+                { c1: "🃏🃏", c2: "🃏", pergunta: "Se você tem duas cartas e ganha mais uma, quantas ficam?", resposta: 3 },
+                { c1: "🃏🃏", c2: "🃏🃏", pergunta: "Duas cartas juntas com mais duas cartas formam quantas?", resposta: 4 }
+            ]
+        };
 
         // Variavel de Controle do Jogo de Ditado
         let faseDitado = 0;
@@ -431,8 +597,14 @@
             { nome: "carro", url: "https://i.pinimg.com/736x/0a/a5/d7/0aa5d7b33165833d6d35d919a4fc5a20.jpg" },
             { nome: "sorvete", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQldcZiBPhOZE-03Sk3sB2HmUbZVAo_NfxXNA&s" },
             { nome: "sapo", url: "https://img.magnific.com/vetores-premium/sapo-de-desenho-animado-bonito_1427847-105.jpg?semt=ais_hybrid&w=740&q=80" },
-            { nome: "lápis", url: "data:image/png;base64,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" }
+            { nome: "lápis", url: "data:image/png;base64,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" }
         ];
+
+        // Variáveis do Jogo Block Blast
+        let bbBoard = [];
+        let bbScore = 0;
+        let bbAvailablePieces = [];
+        let bbSelectedPieceIndex = null;
 
         // Pedir permissão de notificações assim que abrir o app
         if (typeof Notification !== "undefined" && Notification.permission !== "granted") {
@@ -445,7 +617,7 @@
             if(!nome || !pass) return alert("Digite nome e senha!");
             let db = JSON.parse(localStorage.getItem('incluiplay-users')||"{}");
             if(db[nome]) return alert("Usuário já existe!");
-            db[nome] = {senha: pass, pontos:0, itens: [], avatar:"https://blogdeolhonorn.com.br/wp-content/uploads/2026/03/feira-de-ciencias-mascote-224x300.jpeg", rotina: []};
+            db[nome] = {senha: pass, pontos:0, itens: [], cosmeticos:[], avatar:"https://blogdeolhonorn.com.br/wp-content/uploads/2026/03/feira-de-ciencias-mascote-224x300.jpeg", rotina: []};
             localStorage.setItem('incluiplay-users', JSON.stringify(db));
             alert("Conta criada com sucesso!");
         }
@@ -457,14 +629,16 @@
             if(!db[nome] || db[nome].senha!==pass) return alert("Usuário ou senha incorretos!");
             user.nome = nome; 
             user.pontos = db[nome].pontos; 
-            user.itens = db[nome].itens; 
-            user.avatar = db[nome].avatar;
+            user.itens = db[nome].itens || []; 
+            user.cosmeticos = db[nome].cosmeticos || [];
+            user.avatar = db[nome].avatar || "https://blogdeolhonorn.com.br/wp-content/uploads/2026/03/feira-de-ciencias-mascote-224x300.jpeg";
             user.rotina = db[nome].rotina || [
-                { texto: "💧 Beber água", hora: "08:00", tocado: false },
-                { texto: "📖 Estudar Informática", hora: "14:00", tocado: false }
+                { texto: "💧 Beber água", hora: "08:00", dias: [false, true, true, true, true, true, false], tocado: false },
+                { texto: "📖 Estudar Informática", hora: "14:00", dias: [false, true, false, true, false, true, false], tocado: false }
             ];
             
             document.getElementById('avatar-img').src = user.avatar;
+            aplicarFiltrosCosmeticosSalvos();
             document.getElementById('navbar').classList.remove('hidden');
             document.getElementById('user-display').innerText = nome;
             atualizarUI();
@@ -473,12 +647,22 @@
             showSection('home-section');
             falar("Seja bem-vindo ao Inclui Play, " + nome);
             
+            // Requisito de Apresentar o Site por guias na primeira vez
+            if(!localStorage.getItem('incluiplay-tour-feito')) {
+                document.getElementById('guia-modal').classList.remove('hidden');
+            }
+
             setInterval(checarRelogio, 1000);
+        }
+
+        function fecharGuiaIntro() {
+            document.getElementById('guia-modal').classList.add('hidden');
+            localStorage.setItem('incluiplay-tour-feito', 'true');
         }
         
         function salvarUser(){ 
             let db = JSON.parse(localStorage.getItem('incluiplay-users')||"{}");
-            db[user.nome] = {senha: db[user.nome].senha, pontos:user.pontos, itens:user.itens, avatar:user.avatar, rotina: user.rotina};
+            db[user.nome] = {senha: db[user.nome].senha, pontos:user.pontos, itens:user.itens, cosmeticos:user.cosmeticos, avatar:user.avatar, rotina: user.rotina};
             localStorage.setItem('incluiplay-users', JSON.stringify(db));
         }
 
@@ -525,7 +709,7 @@
             document.getElementById('pts-loja').innerText = user.pontos;
         }
 
-        // LOJA
+        // LOJA COSMÉTICOS E AVATAR
         function comprar(tipo, emoji, preco) {
             if(user.pontos >= preco && !user.itens.includes(tipo)) {
                 user.pontos -= preco;
@@ -538,19 +722,177 @@
                 alert("Pontos insuficientes ou você já tem este item!");
             }
         }
+
+        function comprarCosmetico(classe, preco) {
+            if(user.pontos >= preco) {
+                user.pontos -= preco;
+                user.cosmeticos.push(classe);
+                aplicarFiltrosCosmeticosSalvos();
+                atualizarUI();
+                salvarUser();
+                falar("Item estético equipado com sucesso no seu perfil!");
+            } else {
+                alert("Você não tem pontos suficientes para este enfeite exclusivo!");
+            }
+        }
+
+        function aplicarFiltrosCosmeticosSalvos() {
+            const display = document.getElementById('avatar-display');
+            if(!display) return;
+            display.className = ""; // limpa
+            user.cosmeticos.forEach(c => {
+                if(c === 'cristal') display.classList.add('perfil-enfeite-cristal');
+                if(c === 'rtx') display.classList.add('perfil-enfeite-rtx');
+                if(c === 'lendario') display.classList.add('perfil-enfeite-lendario');
+            });
+        }
+
         function trocarAvatar(){
             const nova = prompt("Digite a URL da nova imagem do personagem:");
             if(nova){ user.avatar = nova; document.getElementById('avatar-img').src = nova; salvarUser(); }
         }
 
+        // Carregar do celular/PC direto
+        function carregarFotoGaleria(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    user.avatar = e.target.result;
+                    document.getElementById('avatar-img').src = e.target.result;
+                    salvarUser();
+                    falar("Sua nova foto de perfil foi alterada com sucesso!");
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // SISTEMA EXCLUSIVO DA NOVA ABA: EXERCÍCIOS
+        function selecionarMateriaExercicio(materia) {
+            materiaSelecionadaExercicio = materia;
+            faseAtualExercicio = 1;
+            document.getElementById('exercicios-fases-box').classList.remove('hidden');
+            
+            const listaFases = document.getElementById('exercicios-fases-lista');
+            listaFases.innerHTML = "";
+            
+            // Renderizar botões de fases conforme o banco de questões
+            dbExercicios[materia].forEach((_, idx) => {
+                listaFases.innerHTML += `<button class="fase-btn ${idx+1===1?'active':''}" id="btn-fase-ex-${idx+1}" onclick="mudarFaseExercicio(${idx+1})">Fase ${idx+1}</button>`;
+            });
+
+            document.getElementById('exercicios-playground').classList.remove('hidden');
+            carregarConteudoFaseExercicio();
+        }
+
+        function mudarFaseExercicio(fase) {
+            faseAtualExercicio = fase;
+            document.querySelectorAll('.fase-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`btn-fase-ex-${fase}`).classList.add('active');
+            carregarConteudoFaseExercicio();
+        }
+
+        function carregarConteudoFaseExercicio() {
+            const container = document.getElementById('exercicio-conteudo-dinamico');
+            const dados = dbExercicios[materiaSelecionadaExercicio][faseAtualExercicio - 1];
+
+            if(materiaSelecionadaExercicio === 'portugues') {
+                container.innerHTML = `
+                    <div class="split-exercicio">
+                        <div class="split-box-texto">
+                            <h4 style="color:var(--gold); margin-top:0;">📖 Leitura Recomendada</h4>
+                            <p id="txt-exercicio-p" style="font-size:1.1rem; line-height:1.6;">${dados.texto}</p>
+                        </div>
+                        <div class="split-box-perguntas" id="perguntas-box-exercicio">
+                            <button onclick="falar(document.getElementById('txt-exercicio-p').innerText)" style="background:var(--accent)!important; margin-bottom:15px; font-size:0.9rem;">🔊 Ouvir Texto</button>
+                            <button onclick="liberarPerguntasPortugues()" style="font-size:1.1rem;">Ver Perguntas sobre o Texto ➡️</button>
+                        </div>
+                    </div>
+                `;
+            } else if(materiaSelecionadaExercicio === 'matematica') {
+                container.innerHTML = `
+                    <div style="text-align:center;">
+                        <h3 style="color:var(--gold)">🎴 Desafio Visando Cartas</h3>
+                        <p style="font-size:1.1rem;">Observe atentamente as cartas na mesa:</p>
+                        <div class="cartas-container">
+                            <div class="carta-mat">${dados.c1}</div>
+                            <div style="display:flex; align-items:center; font-weight:bold;">+</div>
+                            <div class="carta-mat">${dados.c2}</div>
+                        </div>
+                        <p style="font-size:1.2rem; font-weight:bold;">${dados.pergunta}</p>
+                        <input type="number" id="resp-mat-exercicio" placeholder="Digite sua resposta numérica..." style="background:white; color:black; font-size:1.3rem; text-align:center; max-width:200px;">
+                        <button onclick="validarRespostaMatExercicio(${dados.resposta})" style="max-width:300px; margin:10px auto; display:block;">Enviar Resultado! 🚀</button>
+                    </div>
+                `;
+            }
+        }
+
+        function liberarPerguntasPortugues() {
+            const dados = dbExercicios['portugues'][faseAtualExercicio - 1];
+            const pBox = document.getElementById('perguntas-box-exercicio');
+            
+            pBox.innerHTML = `
+                <p style="font-weight:bold; font-size:1.05rem; margin-top:0;">${dados.pergunta}</p>
+                ${dados.opcoes.map((op, idx) => `
+                    <button class="btn-game-choice" style="margin:4px 0; text-align:left; font-size:0.95rem;" onclick="validarRespostaPortExercicio(${idx})">${op}</button>
+                `).join('')}
+            `;
+            falar(dados.pergunta);
+        }
+
+        function validarRespostaPortExercicio(escolha) {
+            const dados = dbExercicios['portugues'][faseAtualExercicio - 1];
+            if(escolha === dados.resposta) {
+                ganarPontos(25);
+                alert("Parabéns! Sua interpretação está excelente!");
+                if(faseAtualExercicio < dbExercicios['portugues'].length) {
+                    mudarFaseExercicio(faseAtualExercicio + 1);
+                }
+            } else {
+                mostrarModalErro("Interpretação incorreta", "Que tal ler o texto ao lado mais uma vez com calma?");
+            }
+        }
+
+        function validarRespostaMatExercicio(gabarito) {
+            const valor = parseInt(document.getElementById('resp-mat-exercicio').value);
+            if(valor === gabarito) {
+                ganarPontos(25);
+                alert("Acertou em cheio! Seus cálculos com cartas estão ótimos.");
+                if(faseAtualExercicio < dbExercicios['matematica'].length) {
+                    mudarFaseExercicio(faseAtualExercicio + 1);
+                }
+            } else {
+                mostrarModalErro("Contagem incorreta", "Conte as cartas pretas um por um de novo para acertar.");
+            }
+        }
+
+        // LÓGICA DE SELEÇÃO DOS DIAS DA SEMANA (ROTINA)
+        function toggleDiaRotina(el) {
+            const diaIndex = parseInt(el.getAttribute('data-day'));
+            diasSelecionados[diaIndex] = !diasSelecionados[diaIndex];
+            if(diasSelecionados[diaIndex]) {
+                el.classList.add('active');
+            } else {
+                el.classList.remove('active');
+            }
+        }
+
+        function getDiasTexto(diasArray) {
+            const nomes = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+            let ativos = [];
+            diasArray.forEach((ativo, idx) => { if(ativo) ativos.push(nomes[idx]); });
+            return ativos.length === 7 ? "Todos os dias" : (ativos.length === 0 ? "Nenhum dia" : ativos.join(', '));
+        }
+
         // ROTINA E DESPERTADOR
         function renderizarRotina() {
             const lista = document.getElementById('task-list');
+            if(!lista) return;
             lista.innerHTML = "";
             user.rotina.forEach((item, index) => {
+                const diasTexto = item.dias ? getDiasTexto(item.dias) : "Todos os dias";
                 lista.innerHTML += `
                     <div class="task-item" id="task-${index}">
-                        <span><b>[${item.hora}]</b> ${item.texto}</span>
+                        <span><b>[${item.hora}]</b> ${item.texto} <br><small style="color:var(--gold)">🗓️ ${diasTexto}</small></span>
                         <button onclick="removerTarefa(${index})" style="width:auto; margin:0; padding:5px 10px; background:#ef4444!important;">❌</button>
                     </div>`;
             });
@@ -561,9 +903,20 @@
             const hora = document.getElementById('task-time').value;
             if(!txt || !hora) return alert("Coloque a atividade e escolha o horário!");
             
-            user.rotina.push({ texto: txt, hora: hora, tocado: false });
+            // Salva os dias ou assume todos se nenhum foi marcado
+            let salvos = [...diasSelecionados];
+            if(!salvos.includes(true)) {
+                salvos = [true, true, true, true, true, true, true];
+            }
+
+            user.rotina.push({ texto: txt, hora: hora, dias: salvos, tocado: false });
+            
+            // Limpa formulário
             document.getElementById('task-in').value = "";
             document.getElementById('task-time').value = "";
+            diasSelecionados = [false, false, false, false, false, false, false];
+            document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+
             renderizarRotina();
             salvarUser();
         }
@@ -579,9 +932,13 @@
             const h = String(agora.getHours()).padStart(2, '0');
             const m = String(agora.getMinutes()).padStart(2, '0');
             const horaAtual = `${h}:${m}`;
+            const diaSemanaAtual = agora.getDay(); // 0 = Domingo, 1 = Segunda, etc.
 
             user.rotina.forEach((item, index) => {
-                if (item.hora === horaAtual && !item.tocado) {
+                // Verifica se o alarme está configurado para o dia da semana atual
+                let tocaHoje = item.dias ? item.dias[diaSemanaAtual] : true;
+
+                if (item.hora === horaAtual && tocaHoje && !item.tocado) {
                     item.tocado = true; 
                     dispararAlarme(item.texto, index);
                 }
@@ -751,9 +1108,10 @@
             corAtual = '#000000';
         }
 
-        // VOZ / ACESSIBILIDADE
+        // VOZ / ACESSIBILIDADE ATUALIZADA
         function falar(msg) {
             if (typeof SpeechSynthesisUtterance !== "undefined") {
+                window.speechSynthesis.cancel();
                 const s = new SpeechSynthesisUtterance(msg);
                 s.lang = 'pt-BR';
                 window.speechSynthesis.speak(s);
@@ -762,6 +1120,22 @@
         function mudarFonte(n) { user.fonte += n; document.documentElement.style.setProperty('--font-size', user.fonte + 'px'); }
         function toggleContraste() { document.body.classList.toggle('high-contrast'); }
         function toggleDaltonismo() { document.body.classList.toggle('daltonismo'); }
+        
+        function mudarFiltroDaltonismoEspecífico(tipo) {
+            document.body.classList.remove('daltonismo-protan', 'daltonismo-deuteran');
+            if(tipo === 'protan') document.body.classList.add('daltonismo-protan');
+            if(tipo === 'deuteran') document.body.classList.add('daltonismo-deuteran');
+        }
+
+        function activarFocoLeituraBlocos() {
+            document.querySelectorAll('p, h4').forEach(el => {
+                el.style.border = "2px dashed #a855f7";
+                el.style.padding = "6px";
+                el.style.cursor = "pointer";
+                el.onclick = (e) => { e.stopPropagation(); falar(el.innerText); };
+            });
+            alert("Modo leitura ativa! Clique em cima de qualquer bloco de texto ou parágrafo para o robô ler para você.");
+        }
 
         function sairDoApp() { 
             const nota = prompt("Qual nota de 1 a 5 você dá para o nosso projeto?");
@@ -777,8 +1151,10 @@
             window.scrollTo({ top: container.offsetTop - 20, behavior: 'smooth' });
         }
         function fecharPlayground() {
-            document.getElementById('game-playground').classList.add('hidden');
-            document.getElementById('game-content').innerHTML = "";
+            const container = document.getElementById('game-playground');
+            if(container) container.classList.add('hidden');
+            const content = document.getElementById('game-content');
+            if(content) content.innerHTML = "";
         }
 
         // MODAL DE ERRO EXCLUSIVA
@@ -801,7 +1177,7 @@
             if (input) input.focus();
         }
 
-        // CONTROLADORES E RECONSTRUÇÃO DOS JOGOS
+        // CONTROLADORES DOS JOGOS E SISTEMAS DE FASES EVOLUTIVOS
         function abrirJogo(jogo){
             iniciarPlayground(jogo);
             const caixa = document.getElementById('game-content');
@@ -827,82 +1203,297 @@
                 }, 5000);
 
             } else if(jogo === 'Memória'){
-                let pares = ['🍎','🍌','🍎','🍌'];
-                pares.sort(()=>Math.random()-0.5);
-                let aberto = [];
-                let acertos = 0;
-
-                function renderizarMemoria() {
-                    if(acertos === 2) {
-                        caixa.innerHTML = `<h3>Incrível! 🧠</h3><p>Você completou todos os pares!</p>`;
-                        return;
-                    }
-                    caixa.innerHTML = `
-                        <p style='font-weight:bold; margin-bottom:15px;'>Encontre as frutas iguais:</p>
-                        <div class='game-options-grid'>
-                            ${pares.map((fruta, i) => {
-                                let revelada = aberto.includes(i) || fruta === 'OK';
-                                return `<button class='btn-game-choice' onclick='escolherCarta(${i})' style='font-size:2rem; min-height:80px;'>${revelada ? (fruta === 'OK' ? '✅' : fruta) : '❓'}</button>`;
-                            }).join('')}
-                        </div>
-                    `;
-                }
-
-                window.escolherCarta = (i) => {
-                    if(aberto.includes(i) || pares[i] === 'OK' || aberto.length >= 2) return;
-                    aberto.push(i);
-                    renderizarMemoria();
-
-                    if(aberto.length === 2){
-                        setTimeout(() => {
-                            if(pares[aberto[0]] === pares[aberto[1]]){
-                                acertos++;
-                                ganarPontos(10);
-                                pares[aberto[0]] = 'OK';
-                                pares[aberto[1]] = 'OK';
-                            }
-                            aberto = [];
-                            renderizarMemoria();
-                        }, 1000);
-                    }
-                };
-                renderizarMemoria();
-            } else if(jogo === 'Foco') {
-                const nums = [1,2,3,4,5];
                 caixa.innerHTML = `
-                    <p style='font-size:1.1rem;'>Guarde os números na cabeça: <b style='color:var(--gold); font-size:1.5rem;'>${nums.join(', ')}</b></p>
-                    <input type='text' id='foco-input' placeholder='Digite-os ordenados separados por vírgula...' style='background:white; color:black;'>
-                    <button onclick='validarFoco()'>Enviar Resposta</button>
+                    <h3>Preparando Tabuleiro 6x6... 🧠</h3>
+                    <p>Fique atento! Todas as cartas vão aparecer para você decorar e sumirão logo em seguida!</p>
+                    <button onclick="jogarMemoria6x6()" style="background:var(--success)!important; font-size:1.3rem;">CLIQUE AQUI PARA COMEÇAR A JOGAR! 🚀</button>
                 `;
-                window.validarFoco = () => {
-                    let entrada = document.getElementById('foco-input').value;
-                    if(entrada === nums.join(',')) {
-                        ganarPontos(20);
-                        caixa.innerHTML = `<h3>Excellent! 👁️</h3><p>Sua atenção e foco estão impecáveis.</p>`;
+            } else if(jogo === 'Block Blast') {
+                inicializarBlockBlast();
+            } else if(jogo === 'Foco') {
+                let lvl = gameLevels.foco;
+                let baseNums = [];
+                for(let i=0; i < (3 + lvl); i++) { baseNums.push(Math.floor(Math.random() * 50) + 1); }
+                
+                caixa.innerHTML = `
+                    <div style="width:100%">
+                        <span style="font-size:0.9rem; background:var(--accent); padding:4px 10px; border-radius:8px;">Fase ${lvl}</span>
+                        <p style='font-size:1.1rem; margin-top:15px;'>Memorize estes números: <br><b style='color:var(--gold); font-size:1.8rem;'>${baseNums.join(' - ')}</b></p>
+                        <p id="countdown-foco" style="color:#f472b6; font-weight:bold;">Surgindo campos em 4 segundos...</p>
+                        <div id="foco-action-area" class="hidden">
+                            <input type='text' id='foco-input' placeholder='Digite os números na ordem certa separados por traço (-)...' style='background:white; color:black;'>
+                            <button onclick='validarFoco( [${baseNums.join(',')}] )'>Enviar Resposta 🚀</button>
+                        </div>
+                    </div>
+                `;
+
+                setTimeout(() => {
+                    const cd = document.getElementById('countdown-foco');
+                    if(cd) cd.innerText = "🚨 Digite agora os números de cabeça!";
+                    const area = document.getElementById('foco-action-area');
+                    if(area) area.classList.remove('hidden');
+                }, 4000);
+
+                window.validarFoco = (originais) => {
+                    let entrada = document.getElementById('foco-input').value.replace(/\s/g, '');
+                    let gabarito = originais.join('-');
+                    if(entrada === gabarito) {
+                        gameLevels.foco++;
+                        ganarPontos(15 * lvl);
+                        caixa.innerHTML = `<h3>Excelente! 👁️</h3><p>Fase ${lvl} batida! Vamos para o próximo nível.</p><button onclick="abrirJogo('Foco')">Ir para Fase ${gameLevels.foco} ➡️</button>`;
                     } else {
-                        caixa.innerHTML = `<h3>Ops! Estava incorreto.</h3><button onclick="abrirJogo('Foco')">Tentar Novamente</button>`;
+                        caixa.innerHTML = `<h3>Não foi dessa vez!</h3><p>O gabarito era: <b>${gabarito}</b></p><button onclick="abrirJogo('Foco')">Refazer Fase</button>`;
                     }
                 };
             } else if(jogo === 'Teclado') {
-                const seq = "asdf";
+                let lvl = gameLevels.teclado;
+                const bancoFrases = [
+                    "incluiplay", "tecnologia", "desenvolvimento", "acessibilidade digital", "escola juscelino kubitschek"
+                ];
+                let seq = bancoFrases[(lvl - 1) % bancoFrases.length];
                 caixa.innerHTML = `
-                    <p style='font-size:1.1rem;'>Digite a seguinte sequência usando o teclado: <b style='color:var(--gold); font-size:1.5rem;'>${seq}</b></p>
-                    <input type='text' id='teclado-input' placeholder='Digite aqui...' style='background:white; color:black;'>
-                    <button onclick='validarTeclado()'>Confirmar</button>
+                    <div style="width:100%">
+                        <span style="font-size:0.9rem; background:var(--accent); padding:4px 10px; border-radius:8px;">Fase ${lvl}</span>
+                        <p style='font-size:1.1rem; margin-top:15px;'>Digite com precisão a palavra/frase abaixo:<br><b style='color:var(--gold); font-size:1.5rem;'>${seq}</b></p>
+                        <input type='text' id='teclado-input' placeholder='Digite exatamente igual aqui...' style='background:white; color:black; text-align:center;'>
+                        <button onclick='validarTeclado("${seq}")'>Confirmar Entrada ✔️</button>
+                    </div>
                 `;
-                window.validarTeclado = () => {
-                    let input = document.getElementById('teclado-input').value;
-                    if(input === seq) {
-                        ganarPontos(25);
-                        caixa.innerHTML = `<h3>Perfeito! ⌨️</h3><p>Sequência correta de digitação!</p>`;
+                window.validarTeclado = (alvo) => {
+                    let input = document.getElementById('teclado-input').value.trim();
+                    if(input === alvo) {
+                        gameLevels.teclado++;
+                        ganarPontos(20);
+                        caixa.innerHTML = `<h3>Perfeito! ⌨️</h3><p>Você digita muito bem!</p><button onclick="abrirJogo('Teclado')">Avançar Fase ➡️</button>`;
                     } else {
-                        caixa.innerHTML = `<h3>Incorreto!</h3><button onclick="abrirJogo('Teclado')">Tentar Novamente</button>`;
+                        caixa.innerHTML = `<h3>Incorreto!</h3><p>Atenção aos espaços e letras.</p><button onclick="abrirJogo('Teclado')">Tentar Novamente</button>`;
                     }
                 };
             }
         }
 
-        // LÓGICA DO DITADO ANIMADO REFORMULADA (COM MODAL EXCLUSIVA)
+        // CONTROLADOR EXCLUSIVO MEMÓRIA 6X6 (36 CARTAS)
+        function jogarMemoria6x6() {
+            const caixa = document.getElementById('game-content');
+            const emojisDisponiveis = ['🍎','🍌','🍇','🍓','🍊','🍉','🍒','🍍','🥝','🍋','🥑','🌽','🥕','🥦','🥨','🥞','🍕','🍔'];
+            let cartas = [...emojisDisponiveis, ...emojisDisponiveis];
+            cartas.sort(() => Math.random() - 0.5);
+
+            let aberto = [];
+            let acertos = 0;
+            let jogoLiberado = false;
+
+            caixa.innerHTML = `
+                <p style="font-weight:bold; color:var(--gold);" id="mem-status">⏱️ DECORE AS CARTAS! Elas vão virar em 3 segundos...</p>
+                <div class="memoria-6x6-grid" id="mem-grid-box">
+                    ${cartas.map((emoji) => `<button class="btn-game-choice" style="font-size:1.4rem; min-height:55px; background:rgba(255,255,255,0.2)!important;">${emoji}</button>`).join('')}
+                </div>
+            `;
+
+            setTimeout(() => {
+                jogoLiberado = true;
+                cartas.sort(() => Math.random() - 0.5);
+                const statusLabel = document.getElementById('mem-status');
+                if(statusLabel) statusLabel.innerHTML = "🎯 Pronto! Cartas embaralhadas. Encontre os pares correspondentes:";
+                atualizarVisualGradeMemoria();
+            }, 3000);
+
+            function atualizarVisualGradeMemoria() {
+                const gridBox = document.getElementById('mem-grid-box');
+                if(!gridBox) return;
+
+                gridBox.innerHTML = cartas.map((emoji, idx) => {
+                    let jaResolvido = (emoji === 'OK');
+                    let atualmenteAberto = aberto.includes(idx);
+                    
+                    if (jaResolvido) {
+                        return `<button class="btn-game-choice" style="font-size:1.4rem; min-height:55px; background:#22c55e!important; opacity:0.6;" disabled>✅</button>`;
+                    } else if (atualmenteAberto) {
+                        return `<button class="btn-game-choice" style="font-size:1.4rem; min-height:55px; background:var(--accent)!important;">${emoji}</button>`;
+                    } else {
+                        return `<button class="btn-game-choice" onclick="cliqueCarta6x6(${idx})" style="font-size:1.4rem; min-height:55px; background:#1e293b!important;">❓</button>`;
+                    }
+                }).join('');
+            }
+
+            window.cliqueCarta6x6 = (idx) => {
+                if(!jogoLiberado || aberto.includes(idx) || cartas[idx] === 'OK' || aberto.length >= 2) return;
+                
+                aberto.push(idx);
+                atualizarVisualGradeMemoria();
+
+                if(aberto.length === 2) {
+                    jogoLiberado = false; 
+                    setTimeout(() => {
+                        if(cartas[aberto[0]] === cartas[aberto[1]]) {
+                            acertos++;
+                            ganarPontos(15);
+                            cartas[aberto[0]] = 'OK';
+                            cartas[aberto[1]] = 'OK';
+                            if(acertos === 18) {
+                                caixa.innerHTML = `<h3 style="color:var(--gold)">🏆 MESTRE DA MEMÓRIA!</h3><p>Você desvendou com sucesso a versão gigante de 6x6 e ganhou bônus!</p><button onclick="abrirJogo('Memória')">Jogar Novamente</button>`;
+                                falar("Incrível! Você possui uma memória brilhante. Parabéns!");
+                            }
+                        }
+                        aberto = [];
+                        jogoLiberado = true;
+                        if(acertos < 18) atualizarVisualGradeMemoria();
+                    }, 900);
+                }
+            };
+        }
+
+        // BLOCK BLAST
+        function inicializarBlockBlast() {
+            const caixa = document.getElementById('game-content');
+            bbScore = 0;
+            bbSelectedPieceIndex = null;
+            bbBoard = Array(8).fill(null).map(() => Array(8).fill(false));
+            
+            for(let r=5; r<8; r++){
+                for(let c=0; c<8; c++){
+                    if(Math.random() > 0.6) bbBoard[r][c] = true;
+                }
+            }
+
+            caixa.innerHTML = `
+                <p style="font-size:1rem; font-weight:bold; margin-bottom:5px;">Pontuação Blast: <span id="bb-score-txt" style="color:var(--gold); font-size:1.3rem;">0</span></p>
+                <p style="font-size:0.8rem; opacity:0.8; margin-top:0;">Selecione uma peça abaixo e clique em uma posição do tabuleiro para encaixá-la!</p>
+                <div class="block-blast-grid" id="bb-grid-board"></div>
+                <div class="bb-pieces-container" id="bb-pieces-dock"></div>
+            `;
+
+            renderizarTabuleiroBlockBlast();
+            gerarNovasPecasBlockBlast();
+        }
+
+        function renderizarTabuleiroBlockBlast() {
+            const grid = document.getElementById('bb-grid-board');
+            if(!grid) return;
+            grid.innerHTML = "";
+
+            for(let r=0; r<8; r++) {
+                for(let c=0; c<8; c++) {
+                    const cell = document.createElement('div');
+                    cell.className = "bb-cell" + (bbBoard[r][c] ? " filled" : "");
+                    cell.onclick = () => tentarInserirPecaBB(r, c);
+                    grid.appendChild(cell);
+                }
+            }
+        }
+
+        function gerarNovasPecasBlockBlast() {
+            const dock = document.getElementById('bb-pieces-dock');
+            if(!dock) return;
+            dock.innerHTML = "";
+
+            const formatos = [
+                [[true, true], [true, true]], 
+                [[true, true, true]],         
+                [[true], [true], [true]],     
+                [[true]]                      
+            ];
+
+            bbAvailablePieces = [];
+            bbSelectedPieceIndex = null;
+
+            for(let i=0; i<3; i++) {
+                let randomFormat = formatos[Math.floor(Math.random() * formatos.length)];
+                bbAvailablePieces.push(randomFormat);
+
+                const pieceView = document.createElement('div');
+                pieceView.className = "bb-piece-preview";
+                pieceView.id = `bb-p-preview-${i}`;
+                pieceView.style.gridTemplateRows = `repeat(${randomFormat.length}, 1fr)`;
+                pieceView.style.gridTemplateColumns = `repeat(${randomFormat[0].length}, 1fr)`;
+                pieceView.onclick = (e) => {
+                    e.stopPropagation();
+                    selecionarPecaBB(i);
+                };
+
+                for(let r=0; r<randomFormat.length; r++){
+                    for(let c=0; c<randomFormat[0].length; c++){
+                        const cView = document.createElement('div');
+                        cView.className = "bb-preview-cell" + (randomFormat[r][c] ? " active" : "");
+                        pieceView.appendChild(cView);
+                    }
+                }
+                dock.appendChild(pieceView);
+            }
+        }
+
+        function selecionarPecaBB(idx) {
+            bbSelectedPieceIndex = idx;
+            document.querySelectorAll('.bb-piece-preview').forEach((el, i) => {
+                if(i === idx) el.style.borderColor = "var(--gold)";
+                else el.style.borderColor = "#38bdf8";
+            });
+        }
+
+        function tentarInserirPecaBB(startRow, startCol) {
+            if(bbSelectedPieceIndex === null) return alert("Por favor, selecione uma das peças primeiro!");
+
+            const peca = bbAvailablePieces[bbSelectedPieceIndex];
+            if(!peca) return;
+            const pRows = peca.length;
+            const pCols = peca[0].length;
+
+            if(startRow + pRows > 8 || startCol + pCols > 8) return alert("A peça não cabe nessa posição!");
+
+            for(let r=0; r<pRows; r++) {
+                for(let c=0; c<pCols; c++) {
+                    if(peca[r][c] && bbBoard[startRow + r][startCol + c]) return alert("Posição já ocupada!");
+                }
+            }
+
+            for(let r=0; r<pRows; r++) {
+                for(let c=0; c<pCols; c++) {
+                    if(peca[r][c]) bbBoard[startRow + r][startCol + c] = true;
+                }
+            }
+
+            bbScore += 10;
+            checarLinhasEColunasCompletasBB();
+
+            const previewEl = document.getElementById(`bb-p-preview-${bbSelectedPieceIndex}`);
+            if(previewEl) previewEl.style.visibility = "hidden";
+            
+            bbAvailablePieces[bbSelectedPieceIndex] = null;
+            bbSelectedPieceIndex = null;
+
+            renderizarTabuleiroBlockBlast();
+            document.getElementById('bb-score-txt').innerText = bbScore;
+
+            if(bbAvailablePieces.every(p => p === null)) {
+                ganarPontos(30);
+                gerarNovasPecasBlockBlast();
+            }
+        }
+
+        function checarLinhasEColunasCompletasBB() {
+            let linhasDeletar = [];
+            let colunasDeletar = [];
+
+            for(let r=0; r<8; r++) {
+                if(bbBoard[r].every(cell => cell === true)) linhasDeletar.push(r);
+            }
+            for(let c=0; c<8; c++) {
+                let colunaCheia = true;
+                for(let r=0; r<8; r++) { if(!bbBoard[r][c]) colunaCheia = false; }
+                if(colunaCheia) colunasDeletar.push(c);
+            }
+
+            linhasDeletar.forEach(r => {
+                for(let c=0; c<8; c++) bbBoard[r][c] = false;
+                bbScore += 50;
+            });
+            colunasDeletar.forEach(c => {
+                for(let r=0; r<8; r++) bbBoard[r][c] = false;
+                bbScore += 50;
+            });
+        }
+
+        // DITADO ANIMADO
         function renderizarDitado() {
             const caixa = document.getElementById('game-content');
             if(faseDitado >= listaDitado.length) {
@@ -939,162 +1530,15 @@
         function verificarRespostaDitado() {
             const respUsuario = document.getElementById('ditado-resposta').value.trim().toLowerCase();
             const respostaCorreta = listaDitado[faseDitado].nome.toLowerCase();
-            const normalizar = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-            if(respUsuario === respostaCorreta || normalizar(respUsuario) === normalizar(respostaCorreta)) {
-                ganarPontos(15);
+            if (respUsuario === respostaCorreta) {
+                ganarPontos(20);
                 faseDitado++;
                 renderizarDitado();
             } else {
-                falar("Ops, resposta incorreta. Tente de novo!");
-                mostrarModalErro("Palavra Incorreta!", "Ops! Essa resposta ainda não está certa. Verifique as letrinhas e tente mais uma vez!");
+                mostrarModalErro("Quase lá!", "Essa palavra não está certa. Vamos dar outra olhadinha na imagem e tentar de novo?");
             }
         }
-
-        // LÓGICA REESCRITA DO JOGO DE QUEBRA-CABEÇA COM A IMAGEM EXCLUSIVA DO UNSPLASH
-        let puzzleState = [0, 1, 2, 3, 4, 5, 6, 7, 8]; 
-        const correctPuzzle = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-
-        function abrirAtividade(nome){
-            iniciarPlayground(nome);
-            const caixa = document.getElementById('game-content');
-
-            if(nome==='Quiz de Lógica'){
-                caixa.innerHTML = `
-                    <p style='font-size:1.2rem; font-weight:bold;'>Qual número completa a lógica da sequência: 2, 4, 6, ... ?</p>
-                    <div class='game-options-grid'>
-                        <button class='btn-game-choice' onclick='responderQuiz(7)'>7</button>
-                        <button class='btn-game-choice' onclick='responderQuiz(8)'>8</button>
-                        <button class='btn-game-choice' onclick='responderQuiz(9)'>9</button>
-                        <button class='btn-game-choice' onclick='responderQuiz(10)'>10</button>
-                    </div>
-                `;
-                window.responderQuiz = (escolha) => {
-                    if(escolha === 8) {
-                        ganarPontos(10);
-                        caixa.innerHTML = `<h3>Resposta Certa! ❓</h3><p>Você é muito bom com padrões lógicos!</p>`;
-                    } else {
-                        caixa.innerHTML = `<h3>Errou!</h3><button onclick="abrirAtividade('Quiz de Lógica')">Tentar de Novo</button>`;
-                    }
-                };
-
-            } else if(nome==='Quebra-cabeça'){
-                // Embaralhar as posições deixando o index 8 vazio no final (para ser jogável)
-                do {
-                    puzzleState = [0, 1, 2, 3, 4, 5, 6, 7, 8].sort(() => Math.random() - 0.5);
-                } while (!isPuzzleSolvable(puzzleState) || isPuzzleComplete());
-
-                caixa.innerHTML = `
-                    <p style="font-weight:bold; margin-bottom: 5px;">Ordene as peças da imagem clicando nelas!</p>
-                    <div class="puzzle-board" id="puzzle-board-box"></div>
-                    <p style="font-size:0.85rem; opacity:0.8;">Use o espaço cinza vazio para mover as peças vizinhas.</p>
-                `;
-                renderBoardPuzzle();
-
-            } else if(nome==='Memória Visual'){
-                let cartas = ['🌟','💧','🌟','💧'];
-                cartas.sort(()=>Math.random()-0.5);
-                caixa.innerHTML = `
-                    <p style='font-weight:bold;'>Escolha uma posição para revelar o símbolo secreto escondido:</p>
-                    <div class='game-options-grid'>
-                        <button class='btn-game-choice' onclick='revelarVisual(0)'>Posição 0</button>
-                        <button class='btn-game-choice' onclick='revelarVisual(1)'>Posição 1</button>
-                        <button class='btn-game-choice' onclick='revelarVisual(2)'>Posição 2</button>
-                        <button class='btn-game-choice' onclick='revelarVisual(3)'>Posição 3</button>
-                    </div>
-                `;
-                window.revelarVisual = (escolha) => {
-                    ganarPontos(10);
-                    caixa.innerHTML = `
-                        <h3>Símbolo encontrado: ${cartas[escolha]}</h3>
-                        <p>Ótima escolha espacial! Você ganhou 10 pontos de abordagem.</p>
-                    `;
-                };
-
-            } else if(nome==='Sequência de Números'){
-                caixa.innerHTML = `
-                    <p style='font-size:1.1rem;'>Digite a sequência numérica de 1 até 5 separados por vírgula:</p>
-                    <input type='text' id='seq-input' placeholder='Exemplo: 1,2...' style='background:white; color:black;'>
-                    <button onclick='validarSequencia()'>Verificar Ordem</button>
-                `;
-                window.validarSequencia = () => {
-                    let resp = document.getElementById('seq-input').value;
-                    if(resp === '1,2,3,4,5') {
-                        ganarPontos(15);
-                        caixa.innerHTML = `<h3>Ordem Perfeita! 🔢</h3><p>Sua organização sequencial está correta.</p>`;
-                    } else {
-                        caixa.innerHTML = `<h3>Incorreto!</h3><button onclick="abrirAtividade('Sequência de Números')">Tentar Novamente</button>`;
-                    }
-                };
-            }
-        }
-
-        // LÓGICA DE MONTAGEM DO BOARD DO QUEBRA-CABEÇA
-        function renderBoardPuzzle() {
-            const board = document.getElementById('puzzle-board-box');
-            if(!board) return;
-            board.innerHTML = "";
-
-            puzzleState.forEach((pieceIdx, currentPos) => {
-                const div = document.createElement('div');
-                if(pieceIdx === 8) {
-                    div.className = "puzzle-piece empty";
-                } else {
-                    div.className = "puzzle-piece";
-                    // Mapeamento das coordenadas da imagem de fundo (cortando em 3x3 blocos de 100px)
-                    const row = Math.floor(pieceIdx / 3);
-                    const col = pieceIdx % 3;
-                    div.style.backgroundPosition = `-${col * 100}px -${row * 100}px`;
-                    div.onclick = () => movePuzzlePiece(currentPos);
-                }
-                board.appendChild(div);
-            });
-        }
-
-        function movePuzzlePiece(currentPos) {
-            const emptyPos = puzzleState.indexOf(8);
-            const validMoves = {
-                0: [1, 3], 1: [0, 2, 4], 2: [1, 5],
-                3: [0, 4, 6], 4: [1, 3, 5, 7], 5: [2, 4, 8],
-                6: [3, 7], 7: [4, 6, 8], 8: [5, 7]
-            };
-
-            if (validMoves[currentPos].includes(emptyPos)) {
-                // Inverter posições no array de estado
-                [puzzleState[currentPos], puzzleState[emptyPos]] = [puzzleState[emptyPos], puzzleState[currentPos]];
-                renderBoardPuzzle();
-
-                if (isPuzzleComplete()) {
-                    setTimeout(() => {
-                        ganarPontos(50);
-                        document.getElementById('game-content').innerHTML = `
-                            <h3 style="color: var(--gold);">🏆 Incrível! Quebra-Cabeça Completo!</h3>
-                            <img src="https://images.unsplash.com/vector-1752546478738-824df708f76a?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y3NzfGVufDB8fDB8fHww" style="width:180px; border-radius:15px; border:3px solid var(--gold); margin:10px 0;">
-                            <p>Sua percepção visual e raciocínio lógico foram excelentes.</p>
-                        `;
-                    }, 300);
-                }
-            }
-        }
-
-        function isPuzzleComplete() {
-            return puzzleState.every((val, i) => val === correctPuzzle[i]);
-        }
-
-        // Validador matemático simples para garantir que o quebra cabeça gerado aleatoriamente possua solução física
-        function isPuzzleSolvable(state) {
-            let inversions = 0;
-            for (let i = 0; i < state.length - 1; i++) {
-                for (let j = i + 1; j < state.length; j++) {
-                    if (state[i] !== 8 && state[j] !== 8 && state[i] > state[j]) inversions++;
-                }
-            }
-            return inversions % 2 === 0;
-        }
-
-        document.addEventListener('DOMContentLoaded', ()=>{
-            document.documentElement.style.setProperty('--font-size', user.fonte + 'px');
-        });
     </script>
 </body>
 </html>
